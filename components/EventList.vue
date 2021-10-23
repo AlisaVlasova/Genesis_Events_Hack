@@ -67,6 +67,7 @@ export default {
       padding: 24px 0;
       margin-bottom: 32px;
       max-width: 100%;
+      cursor: pointer;
 
       @media (min-width: 769px) {
         flex-direction: row;

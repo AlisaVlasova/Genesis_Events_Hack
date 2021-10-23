@@ -1,8 +1,8 @@
 <template>
   <ul class="events-list">
     <li
-      v-for="event of events"
-      :key="event"
+      v-for="(event,i) of getEvents"
+      :key="i"
       class="events-list__item"
     >
       <img 
@@ -36,17 +36,17 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 
 export default {
-  props: {
-    events: {
-      type: Array,
-      required: true,
-    },
-  },
   data: () => ({
      
   }),
+  computed: {
+    ...mapGetters([
+      'getEvents',
+    ]),
+  }
 }
 </script>
 
@@ -54,26 +54,16 @@ export default {
   @import '@/assets/scss/_vars.scss';
 
   .events-list {
+
     &__item {
       display: flex;
-      flex-direction: column;
-      padding: 24px 0;
+      padding: 24px 32px;
       max-width: 100%;
-
-      @media (min-width: 769px) {
-        flex-direction: row;
-      }
     }
 
     &__img {
-      max-width: 100%;
-      margin-bottom: 32px;
-
-      @media (min-width: 769px) {
-        max-width: 40%;
-        margin-right: 32px;
-        margin-bottom: 0;
-      }
+      max-width: 40%;
+      margin-right: 32px;
     }
 
     &__description {

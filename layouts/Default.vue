@@ -1,7 +1,14 @@
 <template>
-  <div>
-      <Header/>
-    <h1>layout Default</h1>
-    <Nuxt />
+  <div class="container">
+    <Header/>
+    <div>
+      <Nuxt />
+    </div>
   </div>
 </template>
+
+<style lang="scss">
+  .container {
+    background: red;
+  }
+</style>

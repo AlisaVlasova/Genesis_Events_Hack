@@ -34,14 +34,10 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
 
-  modules: [
-    '@nuxtjs/axios',
-    '@nuxtjs/auth-next',
-'@nuxt/http'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/auth-next', '@nuxt/http'],
   http: {
     // proxyHeaders: false
   },
->>>>>>> Event page: edit nuxt config
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},

@@ -13,7 +13,7 @@
             <NuxtLink to="/event" class="nav__link">Favorite</NuxtLink>
         </li>
         <li class="nav__item">
-            <NuxtLink to="/event" class="nav__link">Profile</NuxtLink>
+            <NuxtLink to="/profile" class="nav__link">Profile</NuxtLink>
         </li>
         <li class="nav__item">
             <NuxtLink to="/event" class="nav__link">Login/Registry</NuxtLink>

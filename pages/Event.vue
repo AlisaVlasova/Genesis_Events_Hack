@@ -3,6 +3,7 @@
     <h1>{{ event.title }}</h1>
     <img :src="event.img" />
     <p>{{ event.city }}</p>
+    <div><LazyCommentsList /></div>
   </div>
 </template>
 <script>

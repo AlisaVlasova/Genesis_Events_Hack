@@ -14,10 +14,10 @@
 
     <div class="search__date">
       <v-date-picker
-        noTitle
         v-if="isActivePicker"
-        @change="(event) => filterDate(event)"
+        no-title
         color="#343f68ff"
+        @change="(event) => filterDate(event)"
       ></v-date-picker>
       <v-btn
         color="blue-grey"
@@ -44,21 +44,24 @@ export default {
   computed: {
     ...mapGetters([
       'getEvents',
+      'getEventsClone',
     ])
   },
   methods: {
     ...mapMutations([
       'setEvents',
+      'setEventsClone',
     ]),
     search(event) {
-      this.setEvents(
+      this.setEventsClone(
         this.getEvents.filter(item => (
-          item.text.includes(event.target.value)
+          item.title.includes(event.target.value)
+            || item.description.includes(event.target.value)
         ))
       );
     },
     filterDate(event) {
-      this.setEvents(
+      this.setEventsClone(
         this.getEvents.filter(item => (
           item.date === event
         ))

@@ -46,10 +46,6 @@ export default {
             default: () => []
         }
     },
-    created() {
-        console.log('prop');
-        console.log(this.users);
-    }
 }
 </script>
 

@@ -9,8 +9,7 @@
 
 <style lang="scss">
   @import '@/assets/scss/main.scss';
-  @import '@/assets/scss/_vars.scss';
-  
+
   .default {
     width: 100%;
     min-height: 100vh;

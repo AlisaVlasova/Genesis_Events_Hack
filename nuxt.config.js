@@ -46,4 +46,7 @@ export default {
     host: '0.0.0.0',
     timing: false,
   },
+  vuetify: {
+    optionsPath: "./vuetify.options.js",
+  }
 }

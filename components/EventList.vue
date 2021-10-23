@@ -1,6 +1,6 @@
 <template>
   <ul class="events-list">
-    <li v-for="event of events" :key="event" class="events-list__item">
+    <li v-for="event of events" :key="event.key" class="events-list__item">
       <img class="events-list__img" src="@/assets/img/img.png" alt="" />
       <div class="events-list__description">
         <h3 class="events-list__title">
@@ -11,8 +11,8 @@
         </p>
         <div class="events-list__bottom">
           <ul class="events-list__tags">
-            <li v-for="tag of event.tags" :key="tag" class="events-list__tag">
-              {{ event.tag }}
+            <li v-for="tag of event.tag" :key="tag" class="events-list__tag">
+              {{ tag }}
             </li>
           </ul>
           <div class="events-list__date">

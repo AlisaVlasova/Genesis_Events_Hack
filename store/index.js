@@ -1,6 +1,18 @@
 
 export const state = () => ({
-  events: {}
+  events: [
+    {
+      name: 'test kjgh  jw gfjw  gf jgw kfug',
+      id: 1,
+      text: 'khgcj gsdkchskh ckshkchskch kshckhsckhsdkc hkshcksh ckshckshcj shckh k hskhskch ksjchk jshc kshcksck',
+      date: 'ajhxfytqf',
+      tags: [
+        'jhgshjd',
+        'sdcvs',
+        'sdfs',
+      ]
+    }
+  ]
 })
 
 export const getters = {

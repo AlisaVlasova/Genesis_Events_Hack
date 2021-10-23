@@ -1,19 +1,96 @@
 <template>
   <ul class="events-list">
-    <li class="events-item">
-      
+    <li
+      v-for="event of getEvents"
+      :key="event"
+      class="events-list__item"
+    >
+      <img 
+        class="events-list__img"
+        src="@/assets/img/img.png"
+        alt="">
+      <div class="events-list__description">
+        <h3 class="events-list__title">
+          {{ event.name }}
+        </h3>
+        <p class="events-list__text">
+          {{ event.text }}
+        </p>
+        <div class="events-list__bottom">
+          <ul class="events-list__tags">
+            <li
+              v-for="tag of event.tags"
+              :key="tag"
+              class="events-list__tag"
+            >
+              {{ tag }}
+            </li>
+          </ul>
+          <div class="events-list__date">
+            {{ event.date }}
+          </div>
+        </div>
+      </div>
     </li>
   </ul>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-  // data: () => ({
-  //   events: 
-  // }),
+  data: () => ({
+     
+  }),
+  computed: {
+    ...mapGetters([
+      'getEvents',
+    ]),
+  }
 }
 </script>
 
-<style>
+<style lang="scss">
+  @import '@/assets/scss/_vars.scss';
 
+  .events-list {
+
+    &__item {
+      display: flex;
+      padding: 24px 32px;
+      max-width: 100%;
+    }
+
+    &__img {
+      max-width: 40%;
+      margin-right: 32px;
+    }
+
+    &__description {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__title {
+      margin-bottom: 16px;
+      font-size: 32px;
+      line-height: 100%;
+      color: $tangerine;
+
+      @media (min-width: 769px) {
+        margin-bottom: 32px;
+        font-size: 50px;
+      }
+    }
+
+    &__text {
+      color: $text;
+    }
+
+    &__date {
+      margin-top: auto;
+      align-self: flex-end;
+      color: $tangerine;
+    }
+  }
 </style>

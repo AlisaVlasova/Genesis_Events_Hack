@@ -20,5 +20,9 @@
       margin: 0 auto;
       padding: 16px;
     }
+
+    // * {
+    //   color: $text;
+    // }
   }
 </style>

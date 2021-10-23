@@ -4,7 +4,7 @@
       <div class="profile__adaptiv-img">
         <img
           class="profile__img"
-          src="https://pokemonletsgo.pokemon.com/assets/img/common/char-pikachu.png"
+          :src="urlOfAvatar"
           alt="photo"
         />
       </div>
@@ -95,13 +95,13 @@
           @change="inputAvatar"
         /> -->
 
-        <label class="profile__text" for="avatar">Choose an URL with a picture:</label>
-    <p>{{urlOfAvatar}}</p>
+        <label class="profile__text" for="avatar">Choose an URL for a new avatar:</label>
         <input
+        class="profile__input-img"
           type="text"
           id="avatar"
           name="avatar"
-          v-model.lazy="urlOfAvatar"
+          @keyup.enter="test"
         /> 
       </div>
     </aside>
@@ -119,7 +119,7 @@ import { mapGetters } from 'vuex';
 export default {
     data() {
         return {
-            urlOfAvatar: ''
+            urlOfAvatar: 'https://pokemonletsgo.pokemon.com/assets/img/common/char-pikachu.png'
         }
     },
     computed: {
@@ -128,6 +128,9 @@ export default {
     ]),
   },
   methods: {
+      test(e) {
+          this.urlOfAvatar = e.target.value;
+      }
     //   inputAvatar(event) {
     //       console.log(event.target.files[0]);
 
@@ -192,6 +195,11 @@ export default {
 
   &__actions {
     width: 70%;
+  }
+
+  &__input-img {
+      background: $text;
+      color: $space-cadet;
   }
 }
 </style>

@@ -87,9 +87,29 @@ export default {
       color: $text;
     }
 
-    &__date {
+    &__bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
       margin-top: auto;
-      align-self: flex-end;
+    }
+
+    &__tags {
+      display: flex;
+      gap: 8px;
+      max-width: 50%;
+      margin-right: 16px;
+    }
+
+    &__tag {
+      background-color: $purple-navy;
+      color: $text;
+      padding: 4px 8px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    &__date {
       color: $tangerine;
     }
   }

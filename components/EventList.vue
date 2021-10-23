@@ -2,7 +2,7 @@
   <ul class="events-list">
     <li
       v-for="event of events"
-      :key="event"
+      :key="event.id"
       class="events-list__item"
     >
       <img 

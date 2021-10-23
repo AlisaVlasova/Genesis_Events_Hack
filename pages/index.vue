@@ -5,6 +5,7 @@
         v-for="tag of getTags"
         :key="tag"
         class="events__tag"
+        @click="filterTag(tag)"
       >
         tag
       </li>
@@ -14,19 +15,27 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
-  // data: () => ({
-  //   picker: '',
-  // }),
   computed: {
     ...mapGetters([
       'getEvents',
       'getTags',
     ]),
   },
-
+  methods: {
+    ...mapMutations([
+      'setEvents',
+    ]),
+    filterTag(tag) {
+      this.setEvents(
+        this.getEvents.filter(item => (
+          item.tags.includes(tag)
+        ))
+      );
+    }
+  }
 }
 </script>
 

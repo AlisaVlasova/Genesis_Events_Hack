@@ -5,21 +5,31 @@
       @change="event => search(event)"
     >
       <v-text-field
+        placeholder="Search"
         hide-details
         append-icon="mdi-magnify"
         single-line
       ></v-text-field>
     </v-toolbar>
 
-    <v-date-picker
-      v-if="isActivePicker"
-      v-model="picker"
-      color="#343f68ff"
-    ></v-date-picker>
-
-    <button class="search__btn">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M2 11h20v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-9zm15-8h4a1 1 0 0 1 1 1v5H2V4a1 1 0 0 1 1-1h4V1h2v2h6V1h2v2z" fill="#fff"/></svg>
-    </button>
+    <div class="search__date">
+      <v-date-picker
+        noTitle
+        v-if="isActivePicker"
+        @change="(event) => filterDate(event)"
+        color="#343f68ff"
+      ></v-date-picker>
+      <v-btn
+        color="blue-grey"
+        class="ma-2 white--text"
+        fab
+        @click="isActivePicker = !isActivePicker"
+      >
+        <v-icon color="#343f68ff">
+          mdi-calendar
+        </v-icon>
+      </v-btn>
+    </div>
   </div>
 </template>
 
@@ -29,7 +39,7 @@ import { mapGetters, mapMutations } from 'vuex';
 export default {
   data: () => ({
     isActivePicker: false,
-
+    picker: [],
   }),
   computed: {
     ...mapGetters([
@@ -47,6 +57,13 @@ export default {
         ))
       );
     },
+    filterDate(event) {
+      this.setEvents(
+        this.getEvents.filter(item => (
+          item.date === event
+        ))
+      );
+    },
   }
 }
 </script>
@@ -56,10 +73,18 @@ export default {
 
   .search {
     display: flex;
+    padding-right: 16px;
+    position: relative;
 
     .v-toolbar {
       background: $space-cadet;
       box-shadow: none;
+    }
+
+    .v-picker {
+      position: absolute;
+      top: 110%;
+      right: 16px;
     }
   }
 </style>

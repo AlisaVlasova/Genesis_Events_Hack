@@ -1,7 +1,8 @@
 <template>
   <div class="search">
     <v-toolbar
-    dark
+      dark
+      @change="event => search(event)"
     >
       <v-text-field
         hide-details
@@ -13,18 +14,28 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex';
+
 export default {
-
-}
-</script>
-
-<style lang="scss" scoped>
-  @import '@/assets/scss/_vars.scss';
-
-  .search {
-    .v-toolbar {
-      background: $space-cadet;
-      box-shadow: none;
-    }
+  data: () => ({
+    toggler: true,
+  }),
+  computed: {
+    ...mapGetters([
+      'getEvents',
+    ])
+  },
+  methods: {
+    ...mapMutations([
+      'setEvents',
+    ]),
+    search(event) {
+      this.setEvents(
+        this.getEvents.filter(item => (
+          item.text.includes(event.target.value)
+        ))
+      );
+    },
+    
   }
-</style>
+

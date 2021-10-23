@@ -11,8 +11,30 @@ export const state = () => ({
         'sdcvs',
         'sdfs',
       ]
+    },
+    {
+      name: 'test kjgh  jw gfjw  gf jgw kfug',
+      id: 2,
+      text: 'khgcj gsdkchskh ckshkchskch kshckhsckhsdkc hkshcksh ckshckshcj shckh k hskhskch ksjchk jshc kshcksck',
+      date: 'ajhxfytqf',
+      tags: [
+        'jhgshjd',
+        'sdcvs',
+        'sdfs',
+      ]
+    },
+    {
+      name: 'test kjgh  jw gfjw  gf jgw kfug',
+      id: 3,
+      text: 'khgcj gsdkchskh ckshkchskch kshckhsckhsdkc hkshcksh ckshckshcj shckh k hskhskch ksjchk jshc kshcksck',
+      date: 'ajhxfytqf',
+      tags: [
+        'jhgshjd',
+        'sdcvs',
+        'sdfs',
+      ]
     }
-  ]
+  ],
 })
 
 export const getters = {
@@ -24,7 +46,7 @@ export const getters = {
 export const mutations = {
   setEvents(state, events) {
     state.events = events;
-  }
+  },
 }
 
 export const actions = {

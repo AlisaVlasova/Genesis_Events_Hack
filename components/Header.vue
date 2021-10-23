@@ -50,22 +50,22 @@ export default {
 
   &__list {
     margin: 0 auto;
-    // display: flex;
     height: 100vh;
-    // flex-direction: column;
-    // justify-content: center;
+
     &-toggle {
       display: none;
+
       @media (min-width: 700px) {
         display: block;
       }
     }
+
     @media (min-width: 700px) {
       display: flex;
-      //   flex-direction: row;
       height: auto;
     }
   }
+
   &__item,
   &__logo {
     line-height: 48px;
@@ -77,10 +77,12 @@ export default {
       margin-right: 30px;
     }
   }
+
   &__link {
     font-weight: bold;
     color: $text;
   }
+
   &__btnWrap {
     position: absolute;
     top: 20px;
@@ -92,6 +94,7 @@ export default {
       display: none;
     }
   }
+
   &__btn,
   &__btn::before,
   &__btn::after {
@@ -99,6 +102,7 @@ export default {
     height: 2px;
     background: $text;
   }
+
   &__btn::before,
   &__btn::after {
     content: '';
@@ -106,12 +110,15 @@ export default {
     position: relative;
     left: 0;
   }
+
   &__btn::before {
     top: -6px;
   }
+
   &__btn::after {
     top: 4px;
   }
+  
   &__btnIcon {
     fill: $text;
   }

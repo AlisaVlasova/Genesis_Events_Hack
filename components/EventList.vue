@@ -2,7 +2,6 @@
   <ul class="events-list">
     <li v-for="event of events" :key="event" class="events-list__item">
       <img class="events-list__img" src="@/assets/img/img.png" alt="" />
-      >>>>>>> Load events data
       <div class="events-list__description">
         <h3 class="events-list__title">
           {{ event.title }}
@@ -26,8 +25,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
   props: {
     events: {

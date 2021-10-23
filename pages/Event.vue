@@ -11,7 +11,7 @@ export default {
   async asyncData({ $http, params }) {
     const event = await $http.$get(
       `https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/events/${params.id}.json`
-    )
+    ).res
     return { event }
   },
 }

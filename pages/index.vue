@@ -16,8 +16,8 @@ export default {
     const data = await fetch(
       'https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/events.json'
     ).then((res) => res.json())
-    console.log(data)
-    this.$store.dispatch('setEvents', data)
+
+    this.$store.dispatch('setEvents', Object.values(data))
   },
 }
 </script>

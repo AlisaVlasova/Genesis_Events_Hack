@@ -31,7 +31,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
-    '@nuxtjs/vuetify',
+    ['@nuxtjs/vuetify', { }]
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -46,4 +46,7 @@ export default {
     host: '0.0.0.0', 
     timing: false
   },
+  vuetify: {
+    optionsPath: "./vuetify.options.js",
+  }
 }

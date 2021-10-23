@@ -35,11 +35,15 @@ export const state = () => ({
       ]
     }
   ],
+  tags: ['1', '2', '3', '4', '5'],
 })
 
 export const getters = {
   getEvents(state) {
-    return state.events
+    return state.events;
+  },
+  getTags(state) {
+    return state.tags;
   }
 }
 

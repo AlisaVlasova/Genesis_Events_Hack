@@ -41,16 +41,21 @@ export const state = () => ({
       id: 3,
       text: 'khgcj gsdkchskh ckshkchskch kshckhsckhsdkc hkshcksh ckshckshcj shckh k hskhskch ksjchk jshc kshcksck',
       date: 'ajhxfytqf',
+
       tags: ['jhgshjd', 'sdcvs', 'sdfs'],
     },
   ],
-
   endpoint:
     'https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/',
 })
 
 export const getters = {
   getEvents(state) {
+    return state.events;
+  },
+  getTags(state) {
+    return state.tags;
+  }
     return state.events
   },
   getEndpoint(state) {
@@ -60,7 +65,7 @@ export const getters = {
 
 export const mutations = {
   setEvents(state, events) {
-    state.events = events
+    state.events = events;
   },
   setEndpoint(state, endpoint) {
     state.endpoint = endpoint

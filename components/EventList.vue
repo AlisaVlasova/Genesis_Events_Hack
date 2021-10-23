@@ -1,7 +1,14 @@
 <template>
   <ul class="events-list">
-    <li v-for="event of events" :key="event" class="events-list__item">
-      <img class="events-list__img" src="@/assets/img/img.png" alt="" />
+    <li
+      v-for="event of events"
+      :key="event.id"
+      class="events-list__item"
+    >
+      <img 
+        class="events-list__img"
+        src="@/assets/img/img.png"
+        alt="">
       <div class="events-list__description">
         <h3 class="events-list__title">
           {{ event.title }}
@@ -32,29 +39,36 @@ export default {
       required: true,
     },
   },
-  data: () => ({}),
+  data: () => ({
+     
+  }),
 }
 </script>
 
 <style lang="scss">
-@import '@/assets/scss/_vars.scss';
-.events-list {
-  &__item {
-    display: flex;
-    flex-direction: column;
-    padding: 24px 0;
-    max-width: 100%;
-    @media (min-width: 769px) {
-      flex-direction: row;
+  @import '@/assets/scss/_vars.scss';
+
+  .events-list {
+    &__item {
+      display: flex;
+      flex-direction: column;
+      padding: 24px 0;
+      max-width: 100%;
+
+      @media (min-width: 769px) {
+        flex-direction: row;
+      }
     }
-  }
-  &__img {
-    max-width: 100%;
-    margin-bottom: 32px;
-    @media (min-width: 769px) {
-      max-width: 40%;
-      margin-right: 32px;
-      margin-bottom: 0;
+
+    &__img {
+      max-width: 100%;
+      margin-bottom: 32px;
+
+      @media (min-width: 769px) {
+        max-width: 40%;
+        margin-right: 32px;
+        margin-bottom: 0;
+      }
     }
   }
   &__description {

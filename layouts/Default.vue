@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <div class="default">
     <Header/>
-    <div>
+    <div class="default__container">
       <Nuxt />
     </div>
   </div>
@@ -10,7 +10,15 @@
 <style lang="scss">
   @import '@/assets/scss/main.scss';
 
-  .container {
+  .default {
+    width: 100%;
+    min-height: 100vh;
+    background: $space-cadet;
     
+    &__container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 16px;
+    }
   }
 </style>

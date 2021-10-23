@@ -10,7 +10,7 @@
         tag
       </li>
     </ul>
-    <event-list :events="getEvents" />
+    <event-list :events="getEventsClone" />
   </div>
 </template>
 
@@ -21,21 +21,32 @@ export default {
   computed: {
     ...mapGetters([
       'getEvents',
+      'getEventsClone',
       'getTags',
     ]),
   },
   methods: {
     ...mapMutations([
       'setEvents',
+      'setEventsClone',
     ]),
     filterTag(tag) {
-      this.setEvents(
+      this.setEventsClone(
         this.getEvents.filter(item => (
           item.tags.includes(tag)
         ))
       );
     }
-  }
+  },
+  // eslint-disable-next-line vue/order-in-components
+  async fetch() {
+    const data = await fetch(
+      'https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/events.json'
+    ).then((res) => res.json())
+
+    this.$store.dispatch('setEvents', Object.values(data))
+    this.$store.dispatch('setEventsClone', Object.values(data))
+  },
 }
 </script>
 
@@ -59,3 +70,4 @@ export default {
     }
   }
 </style>
+

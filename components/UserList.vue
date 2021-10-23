@@ -1,30 +1,36 @@
 <template>
   <ul class="events-list">
     <li
-      v-for="event of events"
-      :key="event.id"
+      v-for="(user,i) of users"
+      :key="i"
       class="events-list__item"
     >
       <img 
         class="events-list__img"
-        src="@/assets/img/img.png"
-        alt="">
+        :src="user.img"
+        alt="avatar">
       <div class="events-list__description">
         <h3 class="events-list__title">
-          {{ event.title }}
+          {{ user.name }}
         </h3>
         <p class="events-list__text">
-          {{ event.description }}
+          Location: {{ user.location }}
         </p>
+
+        <p class="events-list__text">
+          Age: {{ user.age }}
+        </p>
+
         <div class="events-list__bottom">
           <ul class="events-list__tags">
-            <li v-for="tag of event.tag" :key="tag" class="events-list__tag">
+            <li
+              v-for="tag of user.favoriteTags"
+              :key="tag"
+              class="events-list__tag"
+            >
               {{ tag }}
             </li>
           </ul>
-          <div class="events-list__date">
-            {{ event.date }}
-          </div>
         </div>
       </div>
     </li>
@@ -32,43 +38,33 @@
 </template>
 
 <script>
+
 export default {
-  props: {
-    events: {
-      type: Array,
-      required: true,
+    props: {
+        users: {
+            type: Array,
+            default: () => []
+        }
     },
-  },
-  data: () => ({
-     
-  }),
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import '@/assets/scss/_vars.scss';
 
   .events-list {
     &__item {
       display: flex;
-      flex-direction: column;
-      padding: 24px 0;
+      padding: 24px 32px;
       max-width: 100%;
-
-      @media (min-width: 769px) {
-        flex-direction: row;
-      }
     }
 
     &__img {
-      max-width: 100%;
-      margin-bottom: 32px;
-
-      @media (min-width: 769px) {
-        max-width: 40%;
-        margin-right: 32px;
-        margin-bottom: 0;
-      }
+      width: 150px;
+    height: 200px;
+    object-fit: cover;
+    object-position: 50% 50%;
+      margin-right: 48px;
     }
 
     &__description {
@@ -81,27 +77,31 @@ export default {
       font-size: 32px;
       line-height: 100%;
       color: $tangerine;
+
       @media (min-width: 769px) {
         margin-bottom: 32px;
         font-size: 50px;
       }
     }
-    
+
     &__text {
       color: $text;
     }
+
     &__bottom {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
       margin-top: auto;
     }
+
     &__tags {
       display: flex;
       gap: 8px;
       max-width: 50%;
       margin-right: 16px;
     }
+
     &__tag {
       background-color: $purple-navy;
       color: $text;
@@ -109,9 +109,9 @@ export default {
       border-radius: 8px;
       text-align: center;
     }
+
     &__date {
       color: $tangerine;
     }
   }
-
 </style>

@@ -86,23 +86,77 @@
           </a>
         </p>
 
-        <label for="avatar">Choose a profile picture:</label>
+        <!-- <label for="avatar">Choose a profile picture:</label>
 
         <input
           type="file"
           id="avatar"
           name="avatar"
-          accept="image/png, image/jpeg"
-        />
+          @change="inputAvatar"
+        /> -->
+
+        <label class="profile__text" for="avatar">Choose an URL with a picture:</label>
+    <p>{{urlOfAvatar}}</p>
+        <input
+          type="text"
+          id="avatar"
+          name="avatar"
+          v-model.lazy="urlOfAvatar"
+        /> 
       </div>
     </aside>
 
     <aside class="profile__actions">
-      <Search />
-      <EventList />
+      <!-- <Search /> -->
+      <EventList :events="getEvents" />
     </aside>
   </section>
 </template>
+
+<script>
+import { mapGetters } from 'vuex';
+
+export default {
+    data() {
+        return {
+            urlOfAvatar: ''
+        }
+    },
+    computed: {
+    ...mapGetters([
+      'getEvents',
+    ]),
+  },
+  methods: {
+    //   inputAvatar(event) {
+    //       console.log(event.target.files[0]);
+
+    //       const formData = new FormData()
+
+    //   formData.append('action', 'createAppointments')
+    //   formData.append('locationId', this.currentId)
+    //   formData.append('file', this.file, this.name)
+    //   formData.append('run', true)
+
+    //   console.log(formData);
+    // //   api({
+    // //     method: 'post',
+    // //     url: '/upload',
+    // //     data: formData,
+    // //     headers: {
+    // //       Accept: 'application/json',
+    // //       'Content-Type': 'multipart/form-data',
+    // //     },
+    // //   }).then(() => {
+    // //     console.log('OK');
+    // //   }, (err) => console.log(err))
+
+
+    //   }
+  }
+}
+</script>
+
 
 <style scoped lang="scss">
 @import '@/assets/scss/_vars.scss';

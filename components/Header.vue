@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="header">
     <nav class="nav">
       <button class="nav__btnWrap" @click="toggleNav">
         <div class="nav__btn"></div>
@@ -41,8 +41,15 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/scss/_vars.scss';
 
-.nav {
+.header {
+    position: fixed;
+    // top: 0;
+    z-index: 1;
+    width: 100%;
   background: #202c59ff;
+}
+
+.nav {
 
   @media (min-width: 700px) {
     display: flex;

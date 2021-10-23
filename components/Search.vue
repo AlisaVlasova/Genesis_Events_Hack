@@ -41,4 +41,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import '@/assets/scss/_vars.scss';
+
+  .search {
+    .v-toolbar {
+      background: $space-cadet;
+      box-shadow: none;
+    }
+  }
 </style>

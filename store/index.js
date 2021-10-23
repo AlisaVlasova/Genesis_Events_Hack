@@ -47,6 +47,43 @@ export const state = () => ({
   ],
   endpoint:
     'https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/',
+  // users list for admin only
+  users: [
+    {
+      name: 'Leo',
+      location: 'Kiev',
+      age: '105',
+      img: 'https://pokemonletsgo.pokemon.com/assets/img/common/char-pikachu.png',
+      favoriteTags: [
+        'jhgshjd',
+        'sdcvs',
+        'sdfs',
+      ] 
+    },
+    {
+      name: 'Leo',
+      location: 'Kiev',
+      age: '105',
+      img: 'https://pokemonletsgo.pokemon.com/assets/img/common/char-pikachu.png', 
+      favoriteTags: [
+        'jhgshjd',
+        'sdcvs',
+        'sdfs',
+      ]
+    },
+    {
+      name: 'Leo',
+      location: 'Kiev',
+      age: '105',
+      img: 'https://pokemonletsgo.pokemon.com/assets/img/common/char-pikachu.png',
+      favoriteTags: [
+        'jhgshjd',
+        'sdcvs',
+        'sdfs',
+      ] 
+
+    }
+  ]
 })
 
 export const getters = {
@@ -59,6 +96,10 @@ export const getters = {
   getEndpoint(state) {
     return state.endpoint
   },
+
+  getUsers(state) {
+    return state.users
+  }
 }
 
 export const mutations = {

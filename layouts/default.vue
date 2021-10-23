@@ -1,8 +1,8 @@
 <template>
   <div class="default">
     <Header/>
-    <search />
     <div class="default__container">
+      <search />
       <Nuxt />
     </div>
   </div>
@@ -10,7 +10,6 @@
 
 <style lang="scss">
   @import '@/assets/scss/main.scss';
-
   .default {
     width: 100%;
     background: $space-cadet;
@@ -19,6 +18,10 @@
       max-width: 1440px;
       margin: 0 auto;
       padding: 16px;
+    }
+
+    .search {
+      padding-top: 48px;
     }
   }
 </style>

@@ -1,6 +1,8 @@
 export const state = () => ({
+
   eventsInitial: [],
   events: [],
+
   endpoint:
     'https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/',
   // users list for admin only

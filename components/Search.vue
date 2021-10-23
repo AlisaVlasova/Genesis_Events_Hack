@@ -75,7 +75,6 @@ export default {
     display: flex;
     padding-right: 16px;
     position: relative;
-
     .v-toolbar {
       background: $space-cadet;
       box-shadow: none;

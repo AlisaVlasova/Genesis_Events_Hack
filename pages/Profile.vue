@@ -106,10 +106,10 @@
       </div>
     </aside>
 
-    <aside class="profile__actions">
+    <div class="profile__actions">
       <!-- <Search /> -->
       <EventList :events="getEvents" />
-    </aside>
+    </div>
   </section>
 </template>
 
@@ -166,8 +166,22 @@ export default {
 
 .profile {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  // justify-content: space-between;
   min-height: 100vh;
+
+  &__user {
+    position: sticky;
+    top: 100px;
+    align-self: flex-start;
+    max-width: 20%;
+  }
+
+  &__actions {
+    align-self: flex-end;
+    max-width: 70%;
+    transform: translateY(-550px);
+  }
 
   &__img {
     width: 200px;
@@ -193,9 +207,9 @@ export default {
     color: $text;
   }
 
-  &__actions {
-    width: 70%;
-  }
+  // &__actions {
+  //   width: 70%;
+  // }
 
   &__input-img {
       background: $text;

@@ -22,3 +22,27 @@ Hello thisis our app
 Our admin crm for real Appa ) Appa is the event organizer and he has a power to see his events and publish some new cool things.
 
 ![Prototype](https://live.staticflickr.com/65535/51625388243_827f3b8bca_c.jpg)
+
+## What we have done ?
+
+- Events list with dat
+- Sort,filter by date, search
+- Date localizaton
+- Auth with JWT and firebase
+
+![Prototype](https://live.staticflickr.com/65535/51625386733_896bddc828_c.jpg)
+
+- Connection between user and events.
+  Creator user have an special field with event created by him.
+
+- Creator user can create event
+- Users can edit their avatar img and write comments
+- Deploy and github actions
+
+  ![Prototype](https://live.staticflickr.com/65535/51624506852_7d3aacf218_b.jpg)
+  ![Prototype](https://live.staticflickr.com/65535/51625553608_a7fa05352d_b.jpg)
+
+<cite>
+… I tried so hard and got so far
+But in the end it doesn't even matter
+</cite>

@@ -1,6 +1,6 @@
 <template>
   <ul class="profile-list">
-    <li v-for="(user, i) of users" :key="i" class="profile__item">
+    <li v-for="(user, i) of users" :key="i" class="profile-list__item">
       <img class="profile-list__img" :src="user.img" alt="avatar" />
       <div class="profile-list__description">
         <h3 class="profile=list__title">

@@ -107,30 +107,30 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import '@/assets/scss/_vars.scss';
 
   .events-list {
     &__item {
       display: flex;
-      flex-direction: column;
+      // flex-direction: column;
       padding: 24px 0;
       margin-bottom: 32px;
       max-width: 100%;
       cursor: pointer;
 
-      @media (min-width: 769px) {
-        flex-direction: row;
+      // @media (min-width: 769px) {
+      //   flex-direction: row;
 
-        &:nth-child(even) {
-          flex-direction: row-reverse;
+      //   &:nth-child(even) {
+      //     flex-direction: row-reverse;
 
-          .events-list__img {
-            margin-right: 16px;
-            margin-left: 32px;
-          }
-        }
-      }
+      //     .events-list__img {
+      //       margin-right: 16px;
+      //       margin-left: 32px;
+      //     }
+      //   }
+      // }
     }
 
     &__img {

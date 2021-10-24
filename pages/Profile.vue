@@ -47,10 +47,12 @@
 
     <div class="profile__actions">
       <!-- <Search /> -->
-      <ConnectedEventsList
+      <!-- <ConnectedEventsList
         v-if="isAdmin"
         :connectedEvents="user.connectedEvents"
-      />
+      /> -->
+      <event-list :events="eventList" />
+
       <UserList v-if="true" :users="getUsers" />
     </div>
   </section>
@@ -78,15 +80,23 @@ export default {
     )
     user.id = 'eqreygqfuqeyg'
 
-    return { user }
+    const events = await $http.$get(
+      'https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/events.json'
+    )
+
+    return { user, events }
   },
   computed: {
-    ...mapGetters(['getUsers']),
+    ...mapGetters(['getUsers', 'getEvents']),
+
+    eventList() {
+      return Object.values(this.events)
+    }
   },
   midlleware: 'authenticated',
   created() {
     // console.log(12)
-    // console.log(this.getUsers)
+    console.log('events: ',this.eventList)
   },
   methods: {
     imgSrc() {

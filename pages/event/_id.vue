@@ -55,7 +55,6 @@ export default {
 
   computed: {
     commentsList() {
-      console.log(this.event);
       return Object.values(this.comments)
     }
   },

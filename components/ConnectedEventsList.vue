@@ -37,7 +37,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/scss/_vars.scss';
 
 .profile {
@@ -50,13 +50,13 @@ export default {
     cursor: pointer;
     border: 1px solid #fff;
 
-    @media (min-width: 769px) {
-      flex-direction: row;
+    // @media (min-width: 769px) {
+    //   flex-direction: row;
 
-      &:nth-child(even) {
-        flex-direction: row-reverse;
-      }
-    }
+    //   &:nth-child(even) {
+    //     flex-direction: row-reverse;
+    //   }
+    // }
   }
 
   &__title {

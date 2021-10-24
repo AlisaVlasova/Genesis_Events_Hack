@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapMutations, mapActions } from 'vuex';
 
 export default {
   computed: {
@@ -32,17 +32,32 @@ export default {
       'getTags',
     ]),
   },
+  mounted() {
+    console.log(this.getCookie('user'));
+    if (this.getCookie('user')) {
+      this.setToken(this.getCookie('user'));
+    }
+  },
   methods: {
     ...mapMutations([
       'setEvents',
       'setEventsInitial',
     ]),
+    ...mapActions(['setToken']),
     filterTag(tag) {
       this.setEvents(
         this.getEventsInitial.filter(item => (
           item.tags.includes(tag)
         ))
       );
+    },
+
+    getCookie(name) {
+      const matches = document.cookie.match(new RegExp(
+        // eslint-disable-next-line
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+      ));
+      return matches ? decodeURIComponent(matches[1]) : undefined;
     }
   },
   // eslint-disable-next-line vue/order-in-components

@@ -41,6 +41,8 @@
   </section>
 </template>
 <script>
+import { mapActions } from 'vuex';
+
 export default {
     async asyncData({ $http, params }) {
       const event = await $http.$get(
@@ -59,6 +61,24 @@ export default {
       return Object.values(this.comments)
     }
   },
+
+  mounted() {
+    console.log(this.getCookie('user'));
+    if (this.getCookie('user')) {
+      this.setToken(this.getCookie('user'));
+    }
+  },
+
+  methods: {
+     ...mapActions(['setToken']),
+    getCookie(name) {
+      const matches = document.cookie.match(new RegExp(
+        // eslint-disable-next-line
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+      ));
+      return matches ? decodeURIComponent(matches[1]) : undefined;
+    }
+  },   
 }
 </script>
 

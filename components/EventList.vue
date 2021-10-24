@@ -107,7 +107,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import '@/assets/scss/_vars.scss';
 
   .events-list {
@@ -208,16 +208,5 @@ export default {
     &__date {
       color: $tangerine;
     }
-  }
-  .pagination {
-    padding: 16px 0;
-  }
-  
-  .v-pagination__item {
-    background: $purple-navy !important;
-  }
-
-  .v-pagination__navigation {
-    background: $purple-navy !important;
-  }
+  }  
 </style>

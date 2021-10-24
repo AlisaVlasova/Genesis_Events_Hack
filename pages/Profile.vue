@@ -16,15 +16,19 @@
         <p class="profile__text">
           <span class="profile__text_grey">Age: </span>{{ user.age }}
         </p>
-        <label for="avatar">Choose a profile picture:</label>
+        <label class="profile__text" for="avatar">Choose a profile picture:</label>
         <v-file-input
           accept="image/png, image/jpeg, image/bmp"
           placeholder="Pick an avatar"
           prepend-icon="mdi-camera"
           v-model="avatar"
           label="Avatar"
+          dark
         ></v-file-input>
-        <button @click="submitAvatar">Save</button>
+
+        <v-btn
+          elevation="2"
+        >Save</v-btn>
         <!--
         // <input
         //   type="file"
@@ -47,11 +51,13 @@
 
     <div class="profile__actions">
       <!-- <Search /> -->
-      <ConnectedEventsList
+      <!-- <ConnectedEventsList
         v-if="isAdmin"
         :connectedEvents="user.connectedEvents"
-      />
-      <UserList v-if="true" :users="getUsers" />
+      /> -->
+      <event-list :events="eventList" />
+
+      <UserList v-if="user.role === 'creator'" :users="getUsers" />
     </div>
   </section>
 </template>
@@ -73,20 +79,29 @@ export default {
     }
   },
   async asyncData({ $http, params }) {
+    // TODO: нужен ИД конкретного юзера
     const user = await $http.$get(
       `https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/users/eqreygqfuqeyg.json`
     )
     user.id = 'eqreygqfuqeyg'
 
-    return { user }
+    const events = await $http.$get(
+      'https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/events.json'
+    )
+
+    return { user, events }
   },
   computed: {
-    ...mapGetters(['getUsers']),
+    ...mapGetters(['getUsers', 'getEvents']),
+
+    eventList() {
+      return Object.values(this.events)
+    }
   },
   midlleware: 'authenticated',
   created() {
     // console.log(12)
-    // console.log(this.getUsers)
+    console.log('user: ',this.user)
   },
   methods: {
     imgSrc() {
@@ -154,11 +169,36 @@ export default {
   min-height: 100vh;
   padding: 0 2rem;
 
+  @media (max-width: 1000px) {
+      flex-direction: column;
+    }
+
   &__user {
     position: sticky;
     top: 100px;
     align-self: flex-start;
     width: 30%;
+
+    @media (max-width: 1000px) {
+      position: static;
+      display: flex;
+      width: 100%;
+      margin: 0 0 50px;
+    }
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+    }
+  }
+
+  &__block {
+    @media (max-width: 1000px) {
+      margin-left: 50px;
+    }
+
+    @media (max-width: 600px) {
+      margin-left: 0;
+    }
   }
 
   &__actions {
@@ -173,8 +213,10 @@ export default {
   &__img {
     width: 200px;
     height: 300px;
-    object-fit: cover;
-    object-position: 50% 50%;
+
+ @media (max-width: 600px) {
+margin-bottom: 40px;
+ }
   }
 
   &__title {
@@ -197,6 +239,12 @@ export default {
   &__input-img {
     background: $text;
     color: $space-cadet;
+  }
+
+  &__btn {
+    color: $text;
+    border: 1px solid $text;
+    padding: 3px 15px
   }
 }
 </style>

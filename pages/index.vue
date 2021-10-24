@@ -3,7 +3,7 @@
     <banner />
 
     <h2 id="events" class="events__title secondary-title">
-      Найбліжчі події
+      Closest events
     </h2>
     <div class="events__content">
       <ul class="events__tags">
@@ -13,7 +13,7 @@
           class="events__tag"
           @click="filterTag(tag)"
         >
-          tag
+          {{tag}}
         </li>
       </ul>
       <event-list v-if="getEvents.length > 0" :events="getEvents" />
@@ -47,7 +47,7 @@ export default {
     filterTag(tag) {
       this.setEvents(
         this.getEventsInitial.filter(item => (
-          item.tags.includes(tag)
+          item.tag.includes(tag)
         ))
       );
     },
@@ -66,10 +66,6 @@ export default {
       'https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/events.json'
     ).then((res) => res.json())
     const entries = Object.entries(data)
-
-
-    // this.$store.dispatch('setEvents', Object.values(data))
-    // this.$store.dispatch('setEventsInitial', Object.values(data))
 
     const eventsList = entries.map((obj) => {
       obj[1].id = obj[0]

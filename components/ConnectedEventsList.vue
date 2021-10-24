@@ -52,10 +52,6 @@ export default {
 
     @media (min-width: 769px) {
       flex-direction: row;
-
-      // &:nth-child(even) {
-      //   flex-direction: row-reverse;
-      // }
     }
   }
 

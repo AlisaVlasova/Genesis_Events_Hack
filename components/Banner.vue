@@ -8,7 +8,8 @@
     </div>
     <div class="banner__description">
       <h1 class="banner__title primary-title">
-        Не кисни вдома, шукай івенти в своему місті!
+        Check this out!<br>
+        Closest events in your city
       </h1>
     </div>
   </div>

@@ -1,6 +1,6 @@
 export const state = () => ({
+  eventsInitial: [],
   events: [],
-  eventsClone: [],
   endpoint:
     'https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/',
   // users list for admin only
@@ -47,8 +47,8 @@ export const getters = {
   getEvents(state) {
     return state.events;
   },
-  getEventsClone(state) {
-    return state.eventsClone;
+  getEventsInitial(state) {
+    return state.eventsInitial;
   },
   getTags(state) {
     return state.tags;
@@ -66,8 +66,8 @@ export const mutations = {
   setEvents(state, events) {
     state.events = events;
   },
-  setEventsClone(state, events) {
-    state.eventsClone = events;
+  setEventsInitial(state, events) {
+    state.eventsInitial = events;
   },
   setEndpoint(state, endpoint) {
     state.endpoint = endpoint
@@ -75,8 +75,8 @@ export const mutations = {
 }
 
 export const actions = {
-  setEventsClone(context, events) {
-    context.commit('setEventsClone', events)
+  setEventsInitial(context, events) {
+    context.commit('setEventsInitial', events)
   },
   setEvents(context, events) {
     context.commit('setEvents', events)

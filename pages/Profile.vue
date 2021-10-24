@@ -32,11 +32,21 @@
       </div>
     </aside>
 
-    <div class="profile__actions">
-      
-      <event-list :events="eventList" />
+    <div class="profile__actions" v-if="user.role === 'creator'">
+      <select v-model="choosenList" class="profile__select">
+      <option disabled value="">Choose list</option>
+      <option value="users">Users</option>
+      <option value="events">Events</option>
+    </select>
 
-      <UserList v-if="user.role === 'creator'" :users="getUsers" />
+      <!-- <Search /> -->
+      <ConnectedEventsList
+        v-if="user.role === 'creator' && choosenList === 'events'"
+        :connected-events="user.connectedEvents"
+      />
+      <event-list v-if="user.role !== 'creator'" :events="eventList" />
+
+      <UserList v-if="user.role === 'creator' && choosenList === 'users'" :users="getUsers" />
     </div>
   </section>
 </template>
@@ -48,6 +58,7 @@ export default {
   middleware:'authenticated',
   data() {
     return {
+      choosenList: 'events',
       avatar: '',
 
       user: {
@@ -114,30 +125,6 @@ export default {
     },
   },
 }
-//   inputAvatar(event) {
-//       console.log(event.target.files[0]);
-
-//       const formData = new FormData()
-
-//   formData.append('action', 'createAppointments')
-//   formData.append('locationId', this.currentId)
-//   formData.append('file', this.file, this.name)
-//   formData.append('run', true)
-
-//   console.log(formData);
-// //   api({
-// //     method: 'post',
-// //     url: '/upload',
-// //     data: formData,
-// //     headers: {
-// //       Accept: 'application/json',
-// //       'Content-Type': 'multipart/form-data',
-// //     },
-// //   }).then(() => {
-// //     console.log('OK');
-// //   }, (err) => console.log(err))
-
-//   }
 </script>
 
 <style scoped lang="scss">
@@ -182,10 +169,8 @@ export default {
   }
 
   &__actions {
-    // align-self: flex-end;
     width: 70%;
     margin-left: 1rem;
-    //transform: translateY(-550px);
     display: flex;
     flex-direction: column;
   }
@@ -225,6 +210,14 @@ margin-bottom: 40px;
     color: $text;
     border: 1px solid $text;
     padding: 3px 15px
+  }
+
+  &__select {
+    font-size: 1.5em;
+    color: #fff;
+    font-weight: bold;
+    border: 1px solid #fff;
+    padding: 5px;
   }
 }
 </style>

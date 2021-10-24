@@ -9,13 +9,13 @@
         <li class="nav__item" @click.stop="toggleNav">
           <nuxt-link to="/" class="nav__link" :class="{ active: $nuxt.$route.path === '/' }">Events</nuxt-link>
         </li>
-        <li class="nav__item" v-show="$store.state.token" @click.stop="toggleNav">
-          <nuxt-link to="/profile" class="nav__link" :class="{ active: $nuxt.$route.path === '/profile' }">Profile</nuxt-link>
+        <li class="nav__item" @click.stop="toggleNav">
+          <nuxt-link to="/profile" class="nav__link" v-show="$store.state.token" :class="{ active: $nuxt.$route.path === '/profile' }">Profile</nuxt-link>
         </li>
         <li class="nav__item" v-show="!$store.state.token" @click.stop="toggleNav">
           <nuxt-link to="/signin" class="nav__link" :class="{ active: $nuxt.$route.path === '/signin' }">Signin</nuxt-link>
         </li>
-        <li class="nav__item" v-show="!$store.state.token" @click.stop="toggleNav">
+        <li class="nav__item test" v-show="!$store.state.token" @click.stop="toggleNav">
           <nuxt-link to="/signup" class="nav__link nav__link--button" :class="{ active: $nuxt.$route.path === '/signup' }">Signup</nuxt-link>
         </li>
         <li class="nav__item" v-show="$store.state.token" @click.stop="exit">
@@ -28,9 +28,7 @@
 </template>
 
 <script>
-// import { mapActions } from 'vuex'
 export default {
-  // ...mapActions(['logout']),
   data() {
     return {
       isToggleMobileNav: true,

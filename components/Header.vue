@@ -19,7 +19,7 @@
           <nuxt-link to="/signin" class="nav__link" :class="{ active: $nuxt.$route.path === '/signin' }">Signin</nuxt-link>
         </li>
         <li class="nav__item" @click.stop="toggleNav">
-          <nuxt-link to="/signin" class="nav__link nav__link--button" :class="{ active: $nuxt.$route.path === '/signup' }">Signup</nuxt-link>
+          <nuxt-link to="/signup" class="nav__link nav__link--button" :class="{ active: $nuxt.$route.path === '/signup' }">Signup</nuxt-link>
         </li>
       </ul>
     </nav>

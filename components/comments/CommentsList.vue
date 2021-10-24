@@ -1,12 +1,13 @@
 <template>
   <section class="comments">
+    <h2 class="comments__title">Comments: </h2>
     <ul class="comments__list">
       <li
         v-for="(comment, i) of comments"
         :key="i"
         class="comments__item"
       >
-        <h1 class="comments__title">{{comment.author}}</h1>
+        <h1>{{comment.author}}</h1>
         <p class="comments__text">{{comment.text}}</p>
       </li>
     </ul>
@@ -30,10 +31,15 @@ export default {
 @import '@/assets/scss/_vars.scss';
 
 .comments {
+  &__title {
+    margin-top: 20px;
+    color: $text;
+  }
+
   &__item {
     background: #fff;
     border-radius: 10px;
-    margin: 20px;
+    margin: 20px 0;
     padding: 10px;
     color: $space-cadet;
   }

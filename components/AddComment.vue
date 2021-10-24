@@ -60,7 +60,8 @@ export default {
 @import '@/assets/scss/_vars.scss';
 
 .addEvent {
-  min-height: calc(100vh - 112px);
+  // min-height: calc(100vh - 112px);
+
   display: flex;
   flex-direction: column;
 }

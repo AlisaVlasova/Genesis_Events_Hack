@@ -3,7 +3,7 @@
     <li v-for="(user, i) of users" :key="i" class="profile-list__item">
       <img class="profile-list__img" :src="user.img" alt="avatar" />
       <div class="profile-list__description">
-        <h3 class="profile=list__title">
+        <h3 class="profile-list__title">
           {{ user.name }}
         </h3>
         <p class="profile-list__text">Location: {{ user.location }}</p>
@@ -43,7 +43,7 @@ export default {
 .profile-list {
   &__item {
     display: flex;
-    padding: 24px 32px;
+    padding: 24px 0;
     max-width: 100%;
 
     @media (max-width: 600px) {

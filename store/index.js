@@ -44,7 +44,7 @@ export const state = () => ({
 
     }
   ],
-  tags: ['1', '2', '3', '4', '5'],
+  tags: ['hackaton', 'free', 'movie', 'food'],
 })
 
 export const getters = {
@@ -99,5 +99,4 @@ export const actions = {
   logout({ commit }) {
     commit('setToken', undefined)
   }
-
 }

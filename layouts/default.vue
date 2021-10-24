@@ -44,6 +44,7 @@ export default {
       max-width: 1440px;
       margin: 0 auto;
       padding-top: 180px;
+      padding-bottom: 50px;
       
       @media (min-width: 769px) {
         padding-top: 112px;

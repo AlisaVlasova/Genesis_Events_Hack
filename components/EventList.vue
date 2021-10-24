@@ -32,22 +32,12 @@
               </li>
             </ul>
             <div class="events-list__date">
-              {{ $dayjs(event.date).format('DD.MM.YYYY') }}
+              {{ getDate(event.date) }}
             </div>
           </div>
         </div>
       </li>
     </ul>
-    <div class="pagination">
-      <!-- <v-pagination
-        @input="updatePage"
-        dark
-        v-model="page"
-        :length="pagesCount"
-        prev-icon="mdi-menu-left"
-        next-icon="mdi-menu-right"
-      ></v-pagination> -->
-    </div>
   </div>
 </template>
 
@@ -60,51 +50,17 @@ export default {
     }
   },
   data: () => ({
-    // page: 1,
-    // pageSize: 5,
-    // historyList: [],
-    // count: this.pagesData,
+
   }),
-  // watch: {
-  //   events (newValue, oldValue) {
-  //     this.count = newValue;
-  //   }
-  // },
-  // computed: {
-  //   pagesData() {
-  //     return this.events;
-  //   },
-  //   pagesCount() {
-  //     return this.count.length - 1;
-  //   },
-  //   pages() {
-	// 		if (this.pageSize == null || this.pagesCount == null) return 0;
-	// 		return Math.ceil(this.pagesCount / this.pageSize);
-	// 	}
-  // },
-  created() {
-		// this.initPage();
-		// this.updatePage(this.page);
-	},
   methods: {
     eventClickHandler(eventId) {
-      console.log('EVENT: ', this.events,eventId);
       this.$router.push('event/' + eventId)
     },
-    // initPage() {
-		// 	this.pagesCount = this.count.length;
-		// 	if (this.pagesCount < this.pageSize) {
-		// 		this.historyList = this.count;
-		// 	} else {
-		// 		this.historyList = this.count.slice(0, this.pageSize);
-		// 	}
-		// },
-		// updatePage(pageIndex) {
-		// 	const start = (pageIndex - 1) * this.pageSize;
-		// 	const end = pageIndex * this.pageSize;
-		// 	this.historyList = this.count.slice(start, end);
-		// 	this.page = pageIndex;
-		// }
+    getDate(date) {
+      const d = this.$dayjs(date);
+      d.format();
+      return d.local().format('DD.MM.YYYY');
+    }
   },
 }
 </script>
@@ -125,12 +81,12 @@ export default {
         flex-direction: row;
 
         &:nth-child(even) {
-          // flex-direction: row-reverse;
+          flex-direction: row-reverse;
 
-          // .events-list__img {
-          //   margin-right: 16px;
-          //   margin-left: 32px;
-          // }
+          .events-list__img {
+            margin-right: 16px;
+            margin-left: 32px;
+          }
         }
       }
     }
@@ -210,16 +166,5 @@ export default {
     &__date {
       color: $tangerine;
     }
-  }
-  .pagination {
-    padding: 16px 0;
-  }
-  
-  .v-pagination__item {
-    background: $purple-navy !important;
-  }
-
-  .v-pagination__navigation {
-    background: $purple-navy !important;
-  }
+  }  
 </style>

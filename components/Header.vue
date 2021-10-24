@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="header">
     <nav class="nav">
       <button class="nav__btnWrap" @click="toggleNav">
         <div class="nav__btn"></div>
@@ -7,19 +7,20 @@
       <NuxtLink to="/" class="nav__logo nav__link">LOGO Company</NuxtLink>
       <ul :class="[{ 'nav__list-toggle': isToggleMobileNav }, 'nav__list']">
         <li class="nav__item">
-             <NuxtLink to="/" class="nav__link">Events</NuxtLink>
+          <NuxtLink to="/" class="nav__link">Events</NuxtLink>
         </li>
         <li class="nav__item">
-            <NuxtLink to="/event" class="nav__link">Favorite</NuxtLink>
+          <NuxtLink to="/event" class="nav__link">Favorite</NuxtLink>
         </li>
         <li class="nav__item">
-            <NuxtLink to="/event" class="nav__link">Profile</NuxtLink>
+          <NuxtLink to="/profile" class="nav__link">Profile</NuxtLink>
         </li>
         <li class="nav__item">
-            <NuxtLink to="/event" class="nav__link">Login/Registry</NuxtLink>
+          <NuxtLink to="/event" class="nav__link">Login/Registry</NuxtLink>
         </li>
       </ul>
     </nav>
+    <search v-if="$nuxt.$route.path === '/events' || $nuxt.$route.path === '/'" />
   </header>
 </template>
 
@@ -41,9 +42,15 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/scss/_vars.scss';
 
-.nav {
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  width: 100%;
   background: #202c59ff;
+}
 
+.nav {
   @media (min-width: 700px) {
     display: flex;
   }
@@ -70,6 +77,12 @@ export default {
   &__logo {
     line-height: 48px;
     padding: 0 20px;
+    cursor: pointer;
+    transition: 0.4s;
+
+    &:hover > .nav__link {
+      color: $tangerine
+    }
   }
 
   &__item:not(:last-child) {
@@ -79,8 +92,12 @@ export default {
   }
 
   &__link {
-    font-weight: bold;
     color: $text;
+    transition: 0.4s;
+
+    &.active {
+      color: $tangerine
+    }
   }
 
   &__btnWrap {
@@ -118,7 +135,7 @@ export default {
   &__btn::after {
     top: 4px;
   }
-  
+
   &__btnIcon {
     fill: $text;
   }

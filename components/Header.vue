@@ -20,7 +20,7 @@
         </li>
       </ul>
     </nav>
-    <search />
+    <search v-if="$nuxt.$route.path === '/events' || $nuxt.$route.path === '/'" />
   </header>
 </template>
 

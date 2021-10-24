@@ -7,6 +7,7 @@
       v-for="event of events"
       :key="event.id"
       class="events-list__item"
+      @click="eventClickHandler(event.id)"
     >
       <div class="events-list__img">
         <img 
@@ -51,6 +52,7 @@ export default {
   data: () => ({}),
   methods: {
     eventClickHandler(eventId) {
+      console.log(eventId);
       this.$router.push('event/' + eventId)
     },
   },

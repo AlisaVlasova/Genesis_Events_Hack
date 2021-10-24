@@ -47,7 +47,7 @@ export default {
     max-width: 100%;
 
     @media (max-width: 600px) {
-        flex-direction: column;
+      flex-direction: column;
     }
   }
 

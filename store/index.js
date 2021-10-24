@@ -99,5 +99,4 @@ export const actions = {
   logout({ commit }) {
     commit('setToken', undefined)
   }
-
 }

@@ -16,45 +16,28 @@
         <p class="profile__text">
           <span class="profile__text_grey">Age: </span>{{ user.age }}
         </p>
-        <label class="profile__text" for="avatar">Choose a profile picture:</label>
+        <label class="profile__text" for="avatar"
+          >Choose a profile picture:</label
+        >
         <v-file-input
+          v-model="avatar"
           accept="image/png, image/jpeg, image/bmp"
           placeholder="Pick an avatar"
           prepend-icon="mdi-camera"
-          v-model="avatar"
           label="Avatar"
           dark
         ></v-file-input>
 
-        <v-btn
-          elevation="2"
-        >Save</v-btn>
-        <!--
-        // <input
-        //   type="file"
-        //   id="avatar"
-        //   name="avatar"
-        //   @change="inputAvatar"
-                <label class="profile__text" for="avatar"
-          >Choose an URL for a new avatar:</label
-        >
-        <input
-          class="profile__input-img"
-          type="text"
-          id="avatar"
-          name="avatar"
-          @keyup.enter="test"
-        />
-        // /> -->
+        <v-btn elevation="2">Save</v-btn>
       </div>
     </aside>
 
-    <div class="profile__actions" v-if="user.role === 'creator'">
+    <div v-if="user.role === 'creator'" class="profile__actions">
       <select v-model="choosenList" class="profile__select">
-      <option disabled value="">Choose list</option>
-      <option value="users">Users</option>
-      <option value="events">Events</option>
-    </select>
+        <option disabled value="">Choose list</option>
+        <option value="users">Users</option>
+        <option value="events">Events</option>
+      </select>
 
       <!-- <Search /> -->
       <ConnectedEventsList
@@ -63,7 +46,10 @@
       />
       <event-list v-if="user.role !== 'creator'" :events="eventList" />
 
-      <UserList v-if="user.role === 'creator' && choosenList === 'users'" :users="getUsers" />
+      <UserList
+        v-if="user.role === 'creator' && choosenList === 'users'"
+        :users="getUsers"
+      />
     </div>
   </section>
 </template>
@@ -72,7 +58,19 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  middleware:'authenticated',
+  middleware: 'authenticated',
+  async asyncData({ $http, params }) {
+    const user = await $http.$get(
+      `https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/users/eqreygqfuqeyg.json`
+    )
+    user.id = 'eqreygqfuqeyg'
+
+    const events = await $http.$get(
+      'https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/events.json'
+    )
+
+    return { user, events }
+  },
   data() {
     return {
       choosenList: 'events',
@@ -86,31 +84,14 @@ export default {
       },
     }
   },
-  async asyncData({ $http, params }) {
-    // TODO: нужен ИД конкретного юзера
-    const user = await $http.$get(
-      `https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/users/eqreygqfuqeyg.json`
-    )
-    user.id = 'eqreygqfuqeyg'
-
-    const events = await $http.$get(
-      'https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/events.json'
-    )
-
-    return { user, events }
-  },
   computed: {
     ...mapGetters(['getUsers', 'getEvents']),
 
     eventList() {
       return Object.values(this.events)
-    }
+    },
   },
   midlleware: 'authenticated',
-  created() {
-    // console.log(12)
-    console.log('user: ',this.user)
-  },
   methods: {
     imgSrc() {
       return `https://firebasestorage.googleapis.com/v0/b/kyiv-events-b93ca.appspot.com/o/${this.user.id}.png?alt=media`
@@ -142,30 +123,6 @@ export default {
     },
   },
 }
-//   inputAvatar(event) {
-//       console.log(event.target.files[0]);
-
-//       const formData = new FormData()
-
-//   formData.append('action', 'createAppointments')
-//   formData.append('locationId', this.currentId)
-//   formData.append('file', this.file, this.name)
-//   formData.append('run', true)
-
-//   console.log(formData);
-// //   api({
-// //     method: 'post',
-// //     url: '/upload',
-// //     data: formData,
-// //     headers: {
-// //       Accept: 'application/json',
-// //       'Content-Type': 'multipart/form-data',
-// //     },
-// //   }).then(() => {
-// //     console.log('OK');
-// //   }, (err) => console.log(err))
-
-//   }
 </script>
 
 <style scoped lang="scss">
@@ -178,8 +135,8 @@ export default {
   padding: 0 2rem;
 
   @media (max-width: 1000px) {
-      flex-direction: column;
-    }
+    flex-direction: column;
+  }
 
   &__user {
     position: sticky;
@@ -210,10 +167,8 @@ export default {
   }
 
   &__actions {
-    // align-self: flex-end;
     width: 70%;
     margin-left: 1rem;
-    //transform: translateY(-550px);
     display: flex;
     flex-direction: column;
   }
@@ -222,9 +177,9 @@ export default {
     width: 200px;
     height: 300px;
 
- @media (max-width: 600px) {
-margin-bottom: 40px;
- }
+    @media (max-width: 600px) {
+      margin-bottom: 40px;
+    }
   }
 
   &__title {
@@ -252,7 +207,7 @@ margin-bottom: 40px;
   &__btn {
     color: $text;
     border: 1px solid $text;
-    padding: 3px 15px
+    padding: 3px 15px;
   }
 
   &__select {

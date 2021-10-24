@@ -7,24 +7,60 @@
       <nuxt-link to="/" class="nav__logo nav__link">LOGO Company</nuxt-link>
       <ul :class="[{ 'nav__list-toggle': isToggleMobileNav }, 'nav__list']">
         <li class="nav__item" @click.stop="toggleNav">
-          <nuxt-link to="/" class="nav__link" :class="{ active: $nuxt.$route.path === '/' }">Events</nuxt-link>
+          <nuxt-link
+            to="/"
+            class="nav__link"
+            :class="{ active: $nuxt.$route.path === '/' }"
+            >Events</nuxt-link
+          >
         </li>
         <li class="nav__item" @click.stop="toggleNav">
-          <nuxt-link to="/profile" class="nav__link" v-show="$store.state.token" :class="{ active: $nuxt.$route.path === '/profile' }">Profile</nuxt-link>
+          <nuxt-link
+            to="/profile"
+            class="nav__link"
+            v-show="$store.state.token"
+            :class="{ active: $nuxt.$route.path === '/profile' }"
+            >Profile</nuxt-link
+          >
         </li>
-        <li class="nav__item" v-show="!$store.state.token" @click.stop="toggleNav">
-          <nuxt-link to="/signin" class="nav__link" :class="{ active: $nuxt.$route.path === '/signin' }">Signin</nuxt-link>
+        <li
+          class="nav__item"
+          v-show="!$store.state.token"
+          @click.stop="toggleNav"
+        >
+          <nuxt-link
+            to="/signin"
+            class="nav__link"
+            :class="{ active: $nuxt.$route.path === '/signin' }"
+            >Signin</nuxt-link
+          >
         </li>
-        <li class="nav__item test" v-show="!$store.state.token" @click.stop="toggleNav">
-          <nuxt-link to="/signup" class="nav__link nav__link--button" :class="{ active: $nuxt.$route.path === '/signup' }">Signup</nuxt-link>
+        <li
+          class="nav__item test"
+          v-show="!$store.state.token"
+          @click.stop="toggleNav"
+        >
+          <nuxt-link
+            to="/signup"
+            class="nav__link nav__link--button"
+            :class="{ active: $nuxt.$route.path === '/signup' }"
+            >Signup</nuxt-link
+          >
         </li>
         <li class="nav__item" v-show="$store.state.token" @click.stop="exit">
-        <!-- <li class="nav__item" v-show="$localStorage.getItem('user_token')" @click.stop="exit"> -->
-          <nuxt-link to="/signin" class="nav__link nav__link--button" :class="{ active: $nuxt.$route.path === '/signin' }">Logout</nuxt-link>
+          <!-- <li class="nav__item" v-show="$localStorage.getItem('user_token')" @click.stop="exit"> -->
+          <nuxt-link
+            to="/signin"
+            class="nav__link nav__link--button"
+            :class="{ active: $nuxt.$route.path === '/signin' }"
+            >Logout</nuxt-link
+          >
         </li>
       </ul>
     </nav>
-    <search v-if="$nuxt.$route.path === '/events' || $nuxt.$route.path === '/'" />
+    <search
+      v-if="$nuxt.$route.path === '/events' || $nuxt.$route.path === '/'"
+    />
   </header>
 </template>
 
@@ -41,10 +77,10 @@ export default {
     toggleNav() {
       this.isToggleMobileNav = !this.isToggleMobileNav
     },
-    exit(){
+    exit() {
       this.toggleNav()
       this.$store.dispatch('logout')
-    }
+    },
   },
 }
 </script>
@@ -91,7 +127,7 @@ export default {
     transition: 0.4s;
 
     &:hover > .nav__link {
-      color: $tangerine
+      color: $tangerine;
     }
 
     &:hover > .nav__link--button {
@@ -112,11 +148,11 @@ export default {
 
     &--button {
       background: $tangerine;
-      padding: 8px
+      padding: 8px;
     }
 
     &.active {
-      color: $tangerine
+      color: $tangerine;
     }
   }
 

@@ -21,12 +21,12 @@
 </template>
 <script>
 export default {
-    props:['eventId'],
+  props: ['eventId'],
   data() {
     return {
       data: {
-      author:'',
-      text:''
+        author: '',
+        text: '',
       },
     }
   },
@@ -34,7 +34,9 @@ export default {
     async addComment() {
       try {
         const response = await fetch(
-          `https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/comments/${this.$nuxt.$route.path.match(/\/([^/]+)\/?$/)[1]}.json`,
+          `https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/comments/${
+            this.$nuxt.$route.path.match(/\/([^/]+)\/?$/)[1]
+          }.json`,
           {
             method: 'POST',
             headers: {
@@ -49,10 +51,10 @@ export default {
         console.log(err)
       }
     },
-    clear(){
-      this.data.author=""
-      this.data.text=""
-    }
+    clear() {
+      this.data.author = ''
+      this.data.text = ''
+    },
   },
 }
 </script>

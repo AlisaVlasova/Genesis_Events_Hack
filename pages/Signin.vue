@@ -1,13 +1,23 @@
 <template>
   <div class="signin">
-    <form autocomplete="off" class="signin__form form" @submit.prevent="userLogin">
+    <form
+      autocomplete="off"
+      class="signin__form form"
+      @submit.prevent="userLogin"
+    >
       <div class="form__field">
         <label class="form__label">Username</label>
-        <input class="form__input" type="email" v-model="data.email" required />
+        <input v-model="data.email" class="form__input" type="email" required />
       </div>
       <div class="form__field">
         <label class="form__label">Password</label>
-        <input class="form__input" type="password" v-model="data.password" minlength="6" required />
+        <input
+          v-model="data.password"
+          class="form__input"
+          type="password"
+          minlength="6"
+          required
+        />
       </div>
       <div>
         <button class="form__button" type="submit">Submit</button>
@@ -48,8 +58,8 @@ export default {
       )
         .then((response) => response.json())
         .then((json) => {
-          this.setToken(json.idToken);
-          document.cookie = `user=${json.idToken}`;
+          this.setToken(json.idToken)
+          document.cookie = `user=${json.idToken}`
         })
       this.$router.push('/')
     },
@@ -58,13 +68,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import '@/assets/scss/_vars.scss';
+@import '@/assets/scss/_vars.scss';
 
-  .signin {
-    min-height: calc(100vh - 112px);
-    display: flex;
-    flex-direction: column;
-  }
+.signin {
+  min-height: calc(100vh - 112px);
+  display: flex;
+  flex-direction: column;
+}
 input {
   background-color: $text;
 }

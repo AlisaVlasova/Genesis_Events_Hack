@@ -2,6 +2,35 @@
   <div class="signup">
     <form autocomplete="off" class="signup__form form" method="post" @submit.prevent="register">
       <div class="form__field">
+        <label class="form__label">Name</label>
+          <input
+            type="text"
+            class="form__input"
+            name="name"
+            v-model="data.name"
+            required
+          />
+      </div>
+      <div class="form__field">
+        <label class="form__label">Age</label>
+          <input
+            type="number"
+            class="form__input"
+            name="age"
+            v-model="data.age"
+            required
+          />
+      </div>
+      <div class="form__field">
+        <label class="form__label">Short bio</label>
+          <textarea
+            class="form__input"
+            name="text"
+            v-model="data.bio"
+            required
+          ></textarea>
+      </div>
+      <div class="form__field">
         <label class="form__label">Email</label>
           <input
             type="email"
@@ -27,7 +56,6 @@
           Register
         </button>
       </div>
-
       <div class="form__link" style="margin-top: 20px">
         Already got an account? <nuxt-link class="link" to="/signin">Login</nuxt-link>
       </div>

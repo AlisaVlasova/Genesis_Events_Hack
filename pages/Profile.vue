@@ -18,7 +18,6 @@
         </p>
         <label for="avatar">Choose a profile picture:</label>
         <v-file-input
-          :rules="rules"
           accept="image/png, image/jpeg, image/bmp"
           placeholder="Pick an avatar"
           prepend-icon="mdi-camera"
@@ -43,15 +42,16 @@
           @keyup.enter="test"
         />
         // /> -->
-
-
       </div>
     </aside>
 
     <div class="profile__actions">
       <!-- <Search /> -->
-      <!--  <EventList :events="getEvents" /> -->
-      <UserList :users="getUsers" v-if="isAdmin" />
+      <ConnectedEventsList
+        v-if="isAdmin"
+        :connectedEvents="user.connectedEvents"
+      />
+      <UserList v-if="true" :users="getUsers" />
     </div>
   </section>
 </template>
@@ -63,17 +63,11 @@ export default {
   data() {
     return {
       avatar: '',
-      rules: [
-        (value) =>
-          !value ||
-          value.size < 2000000 ||
-          'Avatar size should be less than 2 MB!',
-      ],
+
       user: {
         userName: 'Leonid Shvab',
         age: 10,
         bio: 'some bio',
-        pic: 'https://pokemonletsgo.pokemon.com/assets/img/common/char-pikachu.png',
         role: 'admin',
       },
     }
@@ -82,47 +76,46 @@ export default {
     const user = await $http.$get(
       `https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/users/eqreygqfuqeyg.json`
     )
+    user.id = 'eqreygqfuqeyg'
+
     return { user }
   },
   computed: {
-    ...mapGetters(['getEvents', 'getEndpoint', 'getUsers']),
-  },
-
-  isAdmin() {
-    return this.user.role === 'admin'
+    ...mapGetters(['getUsers']),
   },
 
   created() {
-    console.log(12)
-    console.log(this.getUsers)
+    // console.log(12)
+    // console.log(this.getUsers)
   },
   methods: {
     imgSrc() {
-      return `https://firebasestorage.googleapis.com/v0/b/kyiv-events-b93ca.appspot.com/o/${this.user.pic}?alt=media`
+      return `https://firebasestorage.googleapis.com/v0/b/kyiv-events-b93ca.appspot.com/o/${this.user.id}.png?alt=media`
     },
- 
-    async submitAvatar()  {
-      const formData = new FormData();
-      formData.append('file', this.avatar);
-      console.log('>> formData >> ', formData);
+    isAdmin() {
+      return this.user.role === 'creator'
+    },
+    async submitAvatar() {
+      const formData = new FormData()
+      formData.append('file', this.avatar)
+      console.log('>> formData >> ', formData)
 
       // You should have a server side REST API
-      await fetch(`https://firebasestorage.clients6.google.com/v0/b/kyiv-events-b93ca.appspot.com/o/${this.user.pic}`,
-          {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'image/png'
-            },
-        body: this.avatar
+      await fetch(
+        `https://firebasestorage.clients6.google.com/v0/b/kyiv-events-b93ca.appspot.com/o/${this.user.id}.png`,
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'image/png',
           },
-  
-        ).then(function () {
-          console.log('SUCCESS!!');
-        })
+          body: this.avatar,
+        }
+      )
+        .then(window.location.reload())
         .catch(function () {
-          console.log('FAILURE!!');
-        });
+          console.log('FAILURE!!')
+        })
     },
   },
 }
@@ -157,20 +150,24 @@ export default {
 
 .profile {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   min-height: 100vh;
+  padding: 0 2rem;
 
   &__user {
     position: sticky;
     top: 100px;
     align-self: flex-start;
-    max-width: 20%;
+    width: 30%;
   }
 
   &__actions {
-    align-self: flex-end;
-    max-width: 70%;
-    transform: translateY(-550px);
+    // align-self: flex-end;
+    width: 70%;
+    margin-left: 1rem;
+    //transform: translateY(-550px);
+    display: flex;
+    flex-direction: column;
   }
 
   &__img {

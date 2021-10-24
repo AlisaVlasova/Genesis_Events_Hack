@@ -51,8 +51,6 @@ export default {
           this.setToken(json.idToken);
           document.cookie = `user=${json.idToken}`;
         })
-
-       
       this.$router.push('/')
     },
   },

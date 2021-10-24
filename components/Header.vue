@@ -10,7 +10,7 @@
           <nuxt-link to="/" class="nav__link" :class="{ active: $nuxt.$route.path === '/' }">Events</nuxt-link>
         </li>
         <li class="nav__item" @click.stop="toggleNav">
-          <nuxt-link to="/profile" class="nav__link" :class="{ active: $nuxt.$route.path === '/profile' }">Profile</nuxt-link>
+          <nuxt-link to="/profile" class="nav__link" v-show="$store.state.token" :class="{ active: $nuxt.$route.path === '/profile' }">Profile</nuxt-link>
         </li>
         <li class="nav__item" v-show="!$store.state.token" @click.stop="toggleNav">
           <nuxt-link to="/signin" class="nav__link" :class="{ active: $nuxt.$route.path === '/signin' }">Signin</nuxt-link>

@@ -50,9 +50,19 @@ export default {
     const data = await fetch(
       'https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/events.json'
     ).then((res) => res.json())
+    const entries = Object.entries(data)
 
-    this.$store.dispatch('setEvents', Object.values(data))
-    this.$store.dispatch('setEventsInitial', Object.values(data))
+
+    // this.$store.dispatch('setEvents', Object.values(data))
+    // this.$store.dispatch('setEventsInitial', Object.values(data))
+
+    const eventsList = entries.map((obj) => {
+      obj[1].id = obj[0]
+
+      return obj[1]
+    })
+    this.$store.dispatch('setEventsInitial',  eventsList)
+    this.$store.dispatch('setEvents', eventsList)
   },
 }
 </script>

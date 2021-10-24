@@ -1,5 +1,8 @@
 <template>
-  <ul class="events-list">
+
+  <p v-if="!events.length">No events</p>
+  <ul v-else class="events-list">
+
     <li
       v-for="event of events"
       :key="event.id"
@@ -44,9 +47,13 @@ export default {
       required: true,
     },
   },
-  data: () => ({
-     
-  }),
+
+  data: () => ({}),
+  methods: {
+    eventClickHandler(eventId) {
+      this.$router.push('event/' + eventId)
+    },
+  },
 }
 </script>
 
@@ -60,6 +67,7 @@ export default {
       padding: 24px 0;
       margin-bottom: 32px;
       max-width: 100%;
+      cursor: pointer;
 
       @media (min-width: 769px) {
         flex-direction: row;

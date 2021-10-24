@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="event">
     <h1>{{ event.title }}</h1>
     <img :src="event.img" />
     <p>{{ event.city }}</p>
@@ -11,7 +11,7 @@ export default {
   async asyncData({ $http, params }) {
     const event = await $http.$get(
       `https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/events/${params.id}.json`
-    ).res
+    )
     return { event }
   },
 }

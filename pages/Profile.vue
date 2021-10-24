@@ -29,32 +29,11 @@
         <v-btn
           elevation="2"
         >Save</v-btn>
-        <!--
-        // <input
-        //   type="file"
-        //   id="avatar"
-        //   name="avatar"
-        //   @change="inputAvatar"
-                <label class="profile__text" for="avatar"
-          >Choose an URL for a new avatar:</label
-        >
-        <input
-          class="profile__input-img"
-          type="text"
-          id="avatar"
-          name="avatar"
-          @keyup.enter="test"
-        />
-        // /> -->
       </div>
     </aside>
 
     <div class="profile__actions">
-      <!-- <Search /> -->
-      <!-- <ConnectedEventsList
-        v-if="isAdmin"
-        :connectedEvents="user.connectedEvents"
-      /> -->
+      
       <event-list :events="eventList" />
 
       <UserList v-if="user.role === 'creator'" :users="getUsers" />

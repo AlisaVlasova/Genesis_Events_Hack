@@ -4,19 +4,19 @@
       <button class="nav__btnWrap" @click="toggleNav">
         <div class="nav__btn"></div>
       </button>
-      <NuxtLink to="/" class="nav__logo nav__link">LOGO Company</NuxtLink>
+      <nuxt-link to="/" class="nav__logo nav__link">LOGO Company</nuxt-link>
       <ul :class="[{ 'nav__list-toggle': isToggleMobileNav }, 'nav__list']">
         <li class="nav__item">
-          <NuxtLink to="/" class="nav__link">Events</NuxtLink>
+          <nuxt-link to="/" class="nav__link">Events</nuxt-link>
         </li>
         <li class="nav__item">
-          <NuxtLink to="/event" class="nav__link">Favorite</NuxtLink>
+          <nuxt-link to="/event" class="nav__link">Favorite</nuxt-link>
         </li>
         <li class="nav__item">
-          <NuxtLink to="/profile" class="nav__link">Profile</NuxtLink>
+          <nuxt-link to="/profile" class="nav__link">Profile</nuxt-link>
         </li>
         <li class="nav__item">
-          <NuxtLink to="/event" class="nav__link">Login/Registry</NuxtLink>
+          <nuxt-link to="/signin" class="nav__link">Signin/Registry</nuxt-link>
         </li>
       </ul>
     </nav>

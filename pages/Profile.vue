@@ -69,8 +69,7 @@ export default {
   },
 
   created() {
-      console.log(12);
-    console.log(this.getUsers);  
+
   },
   methods: {
       test(e) {
@@ -112,7 +111,6 @@ export default {
 .profile {
   display: flex;
   flex-direction: column;
-  // justify-content: space-between;
   min-height: 100vh;
 
   &__user {

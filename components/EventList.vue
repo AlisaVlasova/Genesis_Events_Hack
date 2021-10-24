@@ -88,7 +88,7 @@ export default {
 	},
   methods: {
     eventClickHandler(eventId) {
-      console.log('EVENT: ', this.events);
+      console.log('EVENT: ', this.events,eventId);
       this.$router.push('event/' + eventId)
     },
     // initPage() {

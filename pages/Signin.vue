@@ -47,7 +47,9 @@ export default {
         }
       )
         .then((response) => response.json())
-        .then((json) => this.setToken(json.idToken))
+        .then((json) => 
+        this.setToken(json.idToken) 
+        )
       this.$router.push('/')
     },
   },

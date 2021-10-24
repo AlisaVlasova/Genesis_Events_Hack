@@ -3,15 +3,15 @@
     <form
       autocomplete="off"
       class="addEvent__form form"
-      @submit.prevent="addEvent"
+      @submit.prevent="addComment"
     >
       <div class="form__field">
         <label class="form__label">Your name</label>
-        <input class="form__input" type="text" v-model="data.user" />
+        <input class="form__input" type="text" v-model="data.author" />
       </div>
       <div class="form__field">
         <label class="form__label">Comment</label>
-        <textarea class="form__input" v-model="data.comment" />
+        <textarea class="form__input" v-model="data.text" />
       </div>
       <div>
         <button class="form__button" type="submit">Submit</button>
@@ -25,16 +25,16 @@ export default {
   data() {
     return {
       data: {
-      user:'',
-      comment:''
+      author:'',
+      text:''
       },
     }
   },
   methods: {
-    async addEvent() {
+    async addComment() {
       try {
         const response = await fetch(
-          `https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/${this.$nuxt.$route.path}.json`,
+          `https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/comments/${this.$nuxt.$route.path.match(/\/([^/]+)\/?$/)[1]}.json`,
           {
             method: 'POST',
             headers: {
@@ -44,10 +44,15 @@ export default {
           }
         )
         console.log(response)
+        this.clear()
       } catch (err) {
         console.log(err)
       }
     },
+    clear(){
+      this.data.author=""
+      this.data.text=""
+    }
   },
 }
 </script>

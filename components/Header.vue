@@ -4,23 +4,26 @@
       <button class="nav__btnWrap" @click="toggleNav">
         <div class="nav__btn"></div>
       </button>
-      <NuxtLink to="/" class="nav__logo nav__link">LOGO Company</NuxtLink>
+      <nuxt-link to="/" class="nav__logo nav__link">LOGO Company</nuxt-link>
       <ul :class="[{ 'nav__list-toggle': isToggleMobileNav }, 'nav__list']">
         <li class="nav__item">
-          <NuxtLink to="/" class="nav__link">Events</NuxtLink>
+          <nuxt-link to="/" class="nav__link" :class="{ active: $nuxt.$route.path === '/' }">Events</nuxt-link>
         </li>
         <li class="nav__item">
-          <NuxtLink to="/event" class="nav__link">Favorite</NuxtLink>
+          <nuxt-link to="/event" class="nav__link" :class="{ active: $nuxt.$route.path === '/event' }">Favorite</nuxt-link>
         </li>
         <li class="nav__item">
-          <NuxtLink to="/profile" class="nav__link">Profile</NuxtLink>
+          <nuxt-link to="/profile" class="nav__link" :class="{ active: $nuxt.$route.path === '/profile' }">Profile</nuxt-link>
         </li>
         <li class="nav__item">
-          <NuxtLink to="/event" class="nav__link">Login/Registry</NuxtLink>
+          <nuxt-link to="/signin" class="nav__link" :class="{ active: $nuxt.$route.path === '/signin' }">Signin</nuxt-link>
+        </li>
+        <li class="nav__item">
+          <nuxt-link to="/signin" class="nav__link nav__link--button" :class="{ active: $nuxt.$route.path === '/signup' }">Signup</nuxt-link>
         </li>
       </ul>
     </nav>
-    <search />
+    <search v-if="$nuxt.$route.path === '/events' || $nuxt.$route.path === '/'" />
   </header>
 </template>
 
@@ -83,6 +86,11 @@ export default {
     &:hover > .nav__link {
       color: $tangerine
     }
+
+    &:hover > .nav__link--button {
+      color: $tangerine;
+      background: $text;
+    }
   }
 
   &__item:not(:last-child) {
@@ -94,6 +102,11 @@ export default {
   &__link {
     color: $text;
     transition: 0.4s;
+
+    &--button {
+      background: $tangerine;
+      padding: 8px
+    }
 
     &.active {
       color: $tangerine

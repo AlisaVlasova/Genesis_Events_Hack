@@ -5,7 +5,6 @@
     <h2 id="events" class="events__title secondary-title">
       Найбліжчі події
     </h2>
-    <!-- <search /> -->
     <div class="events__content">
       <ul class="events__tags">
         <li
@@ -90,4 +89,5 @@ export default {
 
   }
 </style>
+
 

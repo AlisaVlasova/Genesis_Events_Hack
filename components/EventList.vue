@@ -6,7 +6,7 @@
       <li
         v-for="event of events"
         :key="event.id"
-        @click="eventClickHandler(event.id)"
+        @click.stop="eventClickHandler(event.id)"
         class="events-list__item"
       >
         <div class="events-list__img">
@@ -88,7 +88,7 @@ export default {
 	},
   methods: {
     eventClickHandler(eventId) {
-      console.log('EVENT: ', this.events);
+      console.log('EVENT: ', eventId);
       this.$router.push('event/' + eventId)
     },
     // initPage() {

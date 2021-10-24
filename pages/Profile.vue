@@ -66,6 +66,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  middleware:'authenticated',
   data() {
     return {
       avatar: '',

@@ -19,6 +19,7 @@
           <nuxt-link to="/signup" class="nav__link nav__link--button" :class="{ active: $nuxt.$route.path === '/signup' }">Signup</nuxt-link>
         </li>
         <li class="nav__item" v-show="$store.state.token" @click.stop="exit">
+        <!-- <li class="nav__item" v-show="$localStorage.getItem('user_token')" @click.stop="exit"> -->
           <nuxt-link to="/signin" class="nav__link nav__link--button" :class="{ active: $nuxt.$route.path === '/signin' }">Logout</nuxt-link>
         </li>
       </ul>

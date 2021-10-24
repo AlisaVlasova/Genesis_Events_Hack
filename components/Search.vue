@@ -5,7 +5,7 @@
       @change="event => search(event)"
     >
       <v-text-field
-        placeholder="Шукати івент"
+        placeholder="Search"
         hide-details
         append-icon="mdi-magnify"
         single-line
@@ -18,9 +18,8 @@
         no-title
         color="#343f68ff"
       ></v-date-picker>
-      <!-- отменить инпут -->
       <v-text-field
-        placeholder="Шукати за датою"
+        placeholder="Search by date"
         dark
         color="blue-grey"
         class="v-date-field"

@@ -47,4 +47,13 @@ export default {
   vuetify: {
     optionsPath: "./vuetify.options.js",
   },
+  dayjs: {
+    locales: ['en'],
+    defaultLocale: 'en',
+    defaultTimeZone: 'Dhaka/Bangladesh',
+    plugins: [
+      'utc', // import 'dayjs/plugin/utc'
+      'timezone' // import 'dayjs/plugin/timezone'
+    ] // Your Day.js plugin
+  }
 }

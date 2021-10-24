@@ -7,69 +7,72 @@
     >
       <div class="form__field">
         <label class="form__label">City</label>
-        <input class="form__input" type="text" v-model="data.city" />
+        <input v-model="data.city" class="form__input" type="text" />
       </div>
       <div class="form__field">
         <label class="form__label">Date</label>
-        <input class="form__input" type="date" v-model="data.date" />
+        <input v-model="data.date" class="form__input" type="date" @change="changeDate" />
       </div>
       <div class="form__field">
         <label class="form__label">Description</label>
-        <textarea class="form__input" v-model="data.description" />
+        <textarea v-model="data.description" class="form__input" />
       </div>
       <div class="form__field">
         <label class="form__label">Image</label>
-        <input class="form__input" type="url" v-model="data.img" />
+        <input v-model="data.img" class="form__input" type="url" />
       </div>
       <div class="form__field">
         <label class="form__label">Owner</label>
-        <input class="form__input" type="text" v-model="data.owner" />
+        <input v-model="data.owner" class="form__input" type="text" />
       </div>
       <div class="form__field">
         <label class="form__label">Payment</label>
-        <input class="form__input" type="text" v-model="data.payment" />
+        <input v-model="data.payment" class="form__input" type="text" />
       </div>
       <div class="form__field form__field--checkbox">
-        <h3 class="form__label">Tags:</h3>
-        <label class="form__label form__label--tag" for="movie"
-          >#movie
-          <input
-            class="form__input"
-            type="checkbox"
-            id="movie"
-            value="Movie"
-            v-model="data.tag"
-          />
-        </label>
-        <label class="form__label form__label--tag" for="free"
-          >#free
-          <input
-            class="form__input"
-            type="checkbox"
-            id="free"
-            value="Free"
-            v-model="data.tag"
-          />
-        </label>
+        <h3 class="form__label">Tags:
+          <div>
+            <label class="form__label--tag" for="movie"
+              >#movie
+              <input
+                id="movie"
+                v-model="data.tag"
+                class="form__input"
+                type="checkbox"
+                value="Movie"
+              />
+            </label>
+            <label class="form__label--tag" for="free"
+              >#free
+              <input
+                id="free"
+                v-model="data.tag"
+                class="form__input"
+                type="checkbox"
+                value="Free"
+              />
+            </label>
 
-        <label class="form__label form__label--tag" for="kyiv"
-          >#kyiv
-          <input
-            class="form__input"
-            type="checkbox"
-            id="kyiv"
-            value="Kyiv"
-            v-model="data.tag"
-          />
-        </label>
+            <label class="form__label--tag" for="kyiv"
+              >#kyiv
+              <input
+                id="kyiv"
+                v-model="data.tag"
+                class="form__input"
+                type="checkbox"
+                value="Kyiv"
+              />
+            </label>
+          </div>
+        </h3>
       </div>
       <div class="form__field">
         <label class="form__label">Title</label>
-        <input class="form__input" type="text" v-model="data.title" />
+        <input v-model="data.title" class="form__input" type="text" />
       </div>
       <div class="form__field">
         <label class="form__label">Type</label>
-        <input class="form__input" type="text" v-model="data.type" />
+        <input v-model="data.type" class="form__input" type="text" />
       </div>
       <div>
         <button class="form__button" type="submit">Submit</button>
@@ -95,6 +98,9 @@ export default {
     }
   },
   methods: {
+    changeDate(event) {
+      this.data.date = this.$dayjs(event.date).utc();
+    },
     async addEvent() {
       try {
         const response = await fetch(
@@ -107,8 +113,10 @@ export default {
             body: JSON.stringify(this.data), // body data type must match "Content-Type" header
           }
         )
+        // eslint-disable-next-line no-console
         console.log(response)
       } catch (err) {
+        // eslint-disable-next-line no-console
         console.log(err)
       }
     },
@@ -122,5 +130,17 @@ export default {
   min-height: calc(100vh - 112px);
   display: flex;
   flex-direction: column;
+
+  .form {
+    max-width: 100%;
+
+    &__label--tag {
+      color: $tangerine;
+      font-size: 18px;
+      font-weight: normal;
+      margin-bottom: 0;
+      margin-right: 16px;
+    }
+  }
 }
 </style>

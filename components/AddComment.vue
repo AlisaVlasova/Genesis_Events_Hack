@@ -7,11 +7,11 @@
     >
       <div class="form__field">
         <label class="form__label">Your name</label>
-        <input class="form__input" type="text" v-model="data.user" />
+        <input v-model="data.user" class="form__input" type="text" />
       </div>
       <div class="form__field">
         <label class="form__label">Comment</label>
-        <textarea class="form__input" v-model="data.comment" />
+        <textarea v-model="data.comment" class="form__input" />
       </div>
       <div>
         <button class="form__button" type="submit">Submit</button>
@@ -21,15 +21,13 @@
 </template>
 <script>
 export default {
-    props:['eventId'],
-  data() {
-    return {
-      data: {
-      user:'',
-      comment:''
+  props:['eventId'],
+  data: () => ({
+    data: {
+        user:'',
+        comment:''
       },
-    }
-  },
+  }),
   methods: {
     async addEvent() {
       try {
@@ -55,7 +53,8 @@ export default {
 @import '@/assets/scss/_vars.scss';
 
 .addEvent {
-  min-height: calc(100vh - 112px);
+  // min-height: calc(100vh - 112px);
+
   display: flex;
   flex-direction: column;
 }

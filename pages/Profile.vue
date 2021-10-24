@@ -33,19 +33,30 @@
     </aside>
 
     <div class="profile__actions">
-      
+      <h2 class="secondary-title profile__secondary-title">
+        All events
+      </h2>
       <event-list :events="eventList" />
-
+      <h2 class="secondary-title profile__secondary-title">
+        All users
+      </h2>
       <UserList v-if="user.role === 'creator'" :users="getUsers" />
+      <h2 class="secondary-title profile__secondary-title">
+        Publish new event
+      </h2>
+      <new-event></new-event>
     </div>
   </section>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import newEvent from '../components/newEvent.vue'
 
 export default {
+  components: { newEvent },
   middleware:'authenticated',
+ 
   data() {
     return {
       avatar: '',
@@ -114,44 +125,20 @@ export default {
     },
   },
 }
-//   inputAvatar(event) {
-//       console.log(event.target.files[0]);
-
-//       const formData = new FormData()
-
-//   formData.append('action', 'createAppointments')
-//   formData.append('locationId', this.currentId)
-//   formData.append('file', this.file, this.name)
-//   formData.append('run', true)
-
-//   console.log(formData);
-// //   api({
-// //     method: 'post',
-// //     url: '/upload',
-// //     data: formData,
-// //     headers: {
-// //       Accept: 'application/json',
-// //       'Content-Type': 'multipart/form-data',
-// //     },
-// //   }).then(() => {
-// //     console.log('OK');
-// //   }, (err) => console.log(err))
-
-//   }
 </script>
 
 <style scoped lang="scss">
 @import '@/assets/scss/_vars.scss';
-
 .profile {
   display: flex;
   flex-direction: row;
   min-height: 100vh;
-  padding: 0 2rem;
+  padding: 0 $container_padding;
 
   @media (max-width: 1000px) {
-      flex-direction: column;
-    }
+    flex-direction: column;
+    margin-top: 0;
+  }
 
   &__user {
     position: sticky;
@@ -182,21 +169,29 @@ export default {
   }
 
   &__actions {
-    // align-self: flex-end;
-    width: 70%;
-    margin-left: 1rem;
-    //transform: translateY(-550px);
+    width: 100%;
+    margin-left: 0;
     display: flex;
     flex-direction: column;
+
+    @media (min-width: 1000px) {
+      width: 70%;
+      margin-left: 1rem;
+    }
+  }
+
+  &__secondary-title {
+    margin-top: 32px;
+    margin-bottom: 16px;
   }
 
   &__img {
     width: 200px;
     height: 300px;
 
- @media (max-width: 600px) {
-margin-bottom: 40px;
- }
+    @media (max-width: 600px) {
+      margin-bottom: 40px;
+    }
   }
 
   &__title {

@@ -16,7 +16,7 @@
           tag
         </li>
       </ul>
-      <event-list :events="getEvents" />
+      <event-list v-if="getEvents.length > 0" :events="getEvents" />
     </div>
   </div>
 </template>

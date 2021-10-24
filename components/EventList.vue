@@ -6,7 +6,7 @@
       <li
         v-for="event of events"
         :key="event.id"
-        @click="eventClickHandler(event.id)"
+        @click.stop="eventClickHandler(event.id)"
         class="events-list__item"
       >
         <div class="events-list__img">

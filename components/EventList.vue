@@ -87,6 +87,7 @@ export default {
 	},
   methods: {
     eventClickHandler(eventId) {
+      console.log('EVENT: ', this.events);
       this.$router.push('event/' + eventId)
     },
     // initPage() {
@@ -107,7 +108,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import '@/assets/scss/_vars.scss';
 
   .events-list {
@@ -123,12 +124,12 @@ export default {
         flex-direction: row;
 
         &:nth-child(even) {
-          flex-direction: row-reverse;
+          // flex-direction: row-reverse;
 
-          .events-list__img {
-            margin-right: 16px;
-            margin-left: 32px;
-          }
+          // .events-list__img {
+          //   margin-right: 16px;
+          //   margin-left: 32px;
+          // }
         }
       }
     }

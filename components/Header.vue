@@ -28,9 +28,7 @@
 </template>
 
 <script>
-// import { mapActions } from 'vuex'
 export default {
-  // ...mapActions(['logout']),
   data() {
     return {
       isToggleMobileNav: true,

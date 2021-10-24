@@ -59,6 +59,7 @@ export default {
  
   data() {
     return {
+      choosenList: 'events',
       avatar: '',
 
       user: {
@@ -220,6 +221,14 @@ export default {
     color: $text;
     border: 1px solid $text;
     padding: 3px 15px
+  }
+
+  &__select {
+    font-size: 1.5em;
+    color: #fff;
+    font-weight: bold;
+    border: 1px solid #fff;
+    padding: 5px;
   }
 }
 </style>

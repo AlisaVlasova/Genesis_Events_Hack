@@ -45,6 +45,10 @@ export default {
     display: flex;
     padding: 24px 32px;
     max-width: 100%;
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+    }
   }
 
   &__img {

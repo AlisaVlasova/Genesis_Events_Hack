@@ -1,48 +1,54 @@
 <template>
-  <div>
-    <button>Add Comment</button>
-    <p v-if="$fetchState.pending">Loading....</p>
-    <p v-else-if="$fetchState.error">Error while fetching mountains</p>
-
-    <ul v-else>
-      {{
-        comments.text
-      }}
+  <section class="comments">
+    <h2 class="comments__title">Comments: </h2>
+    <ul class="comments__list">
+      <li
+        v-for="(comment, i) of comments"
+        :key="i"
+        class="comments__item"
+      >
+        <h1>{{comment.author}}</h1>
+        <p class="comments__text">{{comment.text}}</p>
+      </li>
     </ul>
-  </div>
+  </section>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      comments: [],
-    }
+  props: {
+    comments: {
+      type: Array,
+      default: () => []
+    },
   },
 
-  async fetch() {
-    this.comments = await this.$http.$get(
-      `https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/comments/11231431.json`
-    )
-
-    // console.log(data)
-    // if (!response.ok) {
-    //   throw new Error(data.message || 'Could not get comments.')
-    // }
-
-    // for (const key in data) {
-    //   const commentObj = {
-    //     id: key,
-    //     ...data[key],
-    //   }
-    // <li v-for="(comment, index) in comments" :key="index">
-    //   {{ comment.text }}
-    // </li>
-
-    //   this.comments.push(commentObj)
-    // }
-    // console.log(this.comments)
-  },
   fetchOnServer: false,
 }
 </script>
+
+<style scoped lang="scss">
+@import '@/assets/scss/_vars.scss';
+
+.comments {
+  &__title {
+    margin-top: 20px;
+    color: $text;
+  }
+
+  &__item {
+    background: #fff;
+    border-radius: 10px;
+    margin: 20px 0;
+    padding: 10px;
+    color: $space-cadet;
+  }
+
+  &__text {
+    margin-top: 15px;
+  }
+}
+
+    
+
+</style>

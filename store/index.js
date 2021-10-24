@@ -2,6 +2,7 @@ export const state = () => ({
 
   eventsInitial: [],
   events: [],
+  token:null,
 
   endpoint:
     'https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/',
@@ -47,6 +48,9 @@ export const state = () => ({
 })
 
 export const getters = {
+  getToken(state) {
+    return state.token
+  },
   getEvents(state) {
     return state.events;
   },
@@ -65,6 +69,9 @@ export const getters = {
 }
 
 export const mutations = {
+  setToken(state,token) {
+    state.token = token
+  },
   setEvents(state, events) {
     state.events = events;
   },
@@ -77,6 +84,9 @@ export const mutations = {
 }
 
 export const actions = {
+  setToken({ commit },token) {
+    commit('setToken',token)
+  },
   setEventsInitial(context, events) {
     context.commit('setEventsInitial', events)
   },

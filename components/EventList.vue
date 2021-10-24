@@ -80,6 +80,7 @@ export default {
 	},
   methods: {
     eventClickHandler(eventId) {
+      console.log(eventId);
       this.$router.push('event/' + eventId)
     },
     initPage() {

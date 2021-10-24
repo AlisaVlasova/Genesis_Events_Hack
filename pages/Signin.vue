@@ -47,7 +47,12 @@ export default {
         }
       )
         .then((response) => response.json())
-        .then((json) => this.setToken(json.idToken))
+        .then((json) => {
+          this.setToken(json.idToken);
+          document.cookie = `user=${json.idToken}`;
+        })
+
+       
       this.$router.push('/')
     },
   },

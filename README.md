@@ -1,4 +1,4 @@
-### Kyiv events app
+# Kyiv events app
 
 Hi my name HypnoFrog) And I am a Frog. During covid pandemic i lost all my frends, cus frogs don't have zoom.
 
@@ -39,10 +39,19 @@ Our admin crm for real Appa ) Appa is the event organizer and he has a power to 
 - Users can edit their avatar img and write comments
 - Deploy and github actions
 
-  ![Prototype](https://live.staticflickr.com/65535/51624506852_7d3aacf218_b.jpg)
-  ![Prototype](https://live.staticflickr.com/65535/51625553608_a7fa05352d_b.jpg)
+![Prototype](https://live.staticflickr.com/65535/51624506852_7d3aacf218_b.jpg)
+![Prototype](https://live.staticflickr.com/65535/51625553608_a7fa05352d_b.jpg)
 
-<cite>
-… I tried so hard and got so far
-But in the end it doesn't even matter
-</cite>
+  <cite>
+  … I tried so hard and got so far
+  But in the end it doesn't even matter
+  </cite>
+
+- SSR with Nuxt
+- Event page with comments
+
+![Prototype](https://live.staticflickr.com/65535/51626003719_37a63ec118_b.jpg)
+
+![Prototype](https://live.staticflickr.com/65535/51626002644_77b15c2556_b.jpg)
+
+- ESLINT, PRETTIER

@@ -83,7 +83,7 @@ export default {
   computed: {
     ...mapGetters(['getUsers']),
   },
-
+  midlleware: 'authenticated',
   created() {
     // console.log(12)
     // console.log(this.getUsers)

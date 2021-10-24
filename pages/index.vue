@@ -16,7 +16,7 @@
           tag
         </li>
       </ul>
-      <event-list :events="getEventsInitial" />
+      <event-list :events="getEvents" />
     </div>
   </div>
 </template>

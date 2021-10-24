@@ -4,7 +4,7 @@
     <ul v-else class="events-list">
 
       <li
-        v-for="event of historyList"
+        v-for="event of events"
         :key="event.id"
         class="events-list__item"
       >
@@ -38,13 +38,14 @@
       </li>
     </ul>
     <div class="pagination">
-      <v-pagination
+      <!-- <v-pagination
         @input="updatePage"
+        dark
         v-model="page"
         :length="pagesCount"
         prev-icon="mdi-menu-left"
         next-icon="mdi-menu-right"
-      ></v-pagination>
+      ></v-pagination> -->
     </div>
   </div>
 </template>
@@ -58,45 +59,50 @@ export default {
     }
   },
   data: () => ({
-    page: 1,
-    pageSize: 2,
-    historyList: [],
-}),
-  computed: {
-    pagesData() {
-      return this.events
-    },
-    pagesCount() {
-      return this.pagesData.length > 2 ? this.pagesData.length / 2 : 1;
-    },
-    pages() {
-			if (this.pageSize == null || this.pagesCount == null) return 0;
-			return Math.ceil(this.pagesCount / this.pageSize);
-		}
-  },
+    // page: 1,
+    // pageSize: 5,
+    // historyList: [],
+    // count: this.pagesData,
+  }),
+  // watch: {
+  //   events (newValue, oldValue) {
+  //     this.count = newValue;
+  //   }
+  // },
+  // computed: {
+  //   pagesData() {
+  //     return this.events;
+  //   },
+  //   pagesCount() {
+  //     return this.count.length - 1;
+  //   },
+  //   pages() {
+	// 		if (this.pageSize == null || this.pagesCount == null) return 0;
+	// 		return Math.ceil(this.pagesCount / this.pageSize);
+	// 	}
+  // },
   created() {
-		this.initPage();
-		this.updatePage(this.page);
+		// this.initPage();
+		// this.updatePage(this.page);
 	},
   methods: {
     eventClickHandler(eventId) {
-      console.log(eventId);
       this.$router.push('event/' + eventId)
     },
-    initPage() {
-			this.pagesCount = this.pagesData.length;
-			if (this.pagesCount < this.pageSize) {
-				this.historyList = this.pagesData;
-			} else {
-				this.historyList = this.pagesData.slice(0, this.pageSize);
-			}
-		},
-		updatePage(pageIndex) {
-			const start = (pageIndex - 1) * this.pageSize;
-			const end = pageIndex * this.pageSize;
-			this.historyList = this.pagesData.slice(start, end);
-			this.page = pageIndex;
-		}
+    // initPage() {
+		// 	this.pagesCount = this.count.length;
+		// 	if (this.pagesCount < this.pageSize) {
+		// 		this.historyList = this.count;
+		// 	} else {
+		// 		this.historyList = this.count.slice(0, this.pageSize);
+		// 	}
+		// },
+		// updatePage(pageIndex) {
+		// 	const start = (pageIndex - 1) * this.pageSize;
+		// 	const end = pageIndex * this.pageSize;
+		// 	this.historyList = this.count.slice(start, end);
+		// 	this.page = pageIndex;
+		// }
   },
 }
 </script>
@@ -203,5 +209,15 @@ export default {
       color: $tangerine;
     }
   }
+  .pagination {
+    padding: 16px 0;
+  }
+  
+  .v-pagination__item {
+    background: $purple-navy !important;
+  }
 
+  .v-pagination__navigation {
+    background: $purple-navy !important;
+  }
 </style>

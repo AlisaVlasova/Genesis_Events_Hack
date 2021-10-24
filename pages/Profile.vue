@@ -98,7 +98,7 @@ export default {
   },
   methods: {
     imgSrc() {
-      return `https://firebasestorage.googleapis.com/v0/b/kyiv-events-b93ca.appspot.com/o/${this.user.pic}?alt=media&token=3dea66fa-c8e5-439c-acaf-9f8fe47283a1`
+      return `https://firebasestorage.googleapis.com/v0/b/kyiv-events-b93ca.appspot.com/o/${this.user.pic}?alt=media`
     },
  
     async submitAvatar()  {
@@ -107,13 +107,14 @@ export default {
       console.log('>> formData >> ', formData);
 
       // You should have a server side REST API
-      await fetch('https://firebasestorage.googleapis.com/v0/b/kyiv-events-b93ca.appspot.com/api/upload',
+      await fetch(`https://firebasestorage.clients6.google.com/v0/b/kyiv-events-b93ca.appspot.com/o/${this.user.pic}`,
           {
             method: 'POST',
             headers: {
-              'Content-Type': 'multipart/form-data'
+              'Accept': 'application/json',
+              'Content-Type': 'image/png'
             },
-        body: formData
+        body: this.avatar
           },
   
         ).then(function () {

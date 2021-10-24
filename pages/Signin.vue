@@ -1,19 +1,22 @@
 <template>
-  <div>
-    <form @submit.prevent="userLogin">
-      <div>
-        <label>Username</label>
-        <input type="text" v-model="data.email" />
+  <div class="signin">
+    <form autocomplete="off" class="signin__form form" @submit.prevent="userLogin">
+      <div class="form__field">
+        <label class="form__label">Username</label>
+        <input class="form__input" type="email" v-model="data.email" required />
+      </div>
+      <div class="form__field">
+        <label class="form__label">Password</label>
+        <input class="form__input" type="password" v-model="data.password" minlength="6" required />
       </div>
       <div>
-        <label>Password</label>
-        <input type="text" v-model="data.password" />
+        <button class="form__button" type="submit">Submit</button>
       </div>
-      <div>
-        <button type="submit">Submit</button>
+
+      <div class="form__link">
+        <nuxt-link class="link" to="/signup">Signup</nuxt-link>
       </div>
     </form>
-    <nuxt-link to="/registration">Регистрация</nuxt-link>
   </div>
 </template>
 
@@ -51,10 +54,12 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-@import '@/assets/scss/_vars.scss';
+<style lang="scss" scoped>
+  @import '@/assets/scss/_vars.scss';
 
-input {
-  background-color: $text;
-}
+  .signin {
+    min-height: calc(100vh - 112px);
+    display: flex;
+    flex-direction: column;
+  }
 </style>

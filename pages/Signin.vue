@@ -18,7 +18,7 @@
 </template>
 
 <script>
-
+import { mapActions } from 'vuex'
 export default {
   data() {
     return {
@@ -30,24 +30,22 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['setToken']),
 
     async userLogin() {
-      try {
-        const response = await fetch(
-          'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyC_ryyBF1moAH7aDEl0E4bNzf8tvAMrJqQ',
-          {
-            method: 'POST', 
-            headers: {
-              'Content-Type': 'application/json',
-
-            },
-            body: JSON.stringify(this.data), // body data type must match "Content-Type" header
-          }
-        )
-        console.log({response})
-      } catch (err) {
-        // console.log(err)
-      }
+      await fetch(
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyC_ryyBF1moAH7aDEl0E4bNzf8tvAMrJqQ',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(this.data), // body data type must match "Content-Type" header
+        }
+      )
+        .then((response) => response.json())
+        .then((json) => this.setToken(json.idToken))
+      this.$router.push('/')
     },
   },
 }
@@ -56,8 +54,7 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/scss/_vars.scss';
 
-  input{
-    background-color:$text
-  }
-
+input {
+  background-color: $text;
+}
 </style>

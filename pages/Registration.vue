@@ -80,6 +80,7 @@ export default {
             body: JSON.stringify(this.data), // body data type must match "Content-Type" header
           }
         )
+        this.$router.push('/singin')
         console.log(response)
       } catch (err) {
         console.log(err)

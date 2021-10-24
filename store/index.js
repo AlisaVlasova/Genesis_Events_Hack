@@ -96,4 +96,8 @@ export const actions = {
   setEndpoint(context, endpoint) {
     context.commit('setEndpoint', endpoint)
   },
+  logout({ commit }) {
+    commit('setToken', undefined)
+  }
+
 }

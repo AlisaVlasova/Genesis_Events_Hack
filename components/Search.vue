@@ -5,7 +5,7 @@
       @change="event => search(event)"
     >
       <v-text-field
-        placeholder="Search"
+        placeholder="Шукати івент"
         hide-details
         append-icon="mdi-magnify"
         single-line
@@ -19,16 +19,20 @@
         color="#343f68ff"
         @change="(event) => filterDate(event)"
       ></v-date-picker>
-      <v-btn
+      <!-- отменить инпут -->
+      <v-text-field
+        placeholder="Шукати за датою"
+        dark
         color="blue-grey"
-        class="ma-2 white--text"
+        class="v-date-field"
         fab
+        append-icon="mdi-calendar"
+        hide-details
+        single-line
+        :value="picker.date"
         @click="isActivePicker = !isActivePicker"
-      >
-        <v-icon color="#343f68ff">
-          mdi-calendar
-        </v-icon>
-      </v-btn>
+        @change="(date) => filterDate(date)"
+      ></v-text-field>
     </div>
   </div>
 </template>
@@ -39,31 +43,34 @@ import { mapGetters, mapMutations } from 'vuex';
 export default {
   data: () => ({
     isActivePicker: false,
-    picker: [],
+    picker: {
+      date: '',
+    },
   }),
   computed: {
     ...mapGetters([
       'getEvents',
-      'getEventsClone',
+      'getEventsInitial',
     ])
   },
   methods: {
     ...mapMutations([
       'setEvents',
-      'setEventsClone',
+      'setEventsInitial',
     ]),
     search(event) {
-      this.setEventsClone(
-        this.getEvents.filter(item => (
+      this.setEvents(
+        this.getEventsInitial.filter(item => (
           item.title.includes(event.target.value)
             || item.description.includes(event.target.value)
         ))
       );
     },
-    filterDate(event) {
-      this.setEventsClone(
-        this.getEvents.filter(item => (
-          item.date === event
+    filterDate(date) {
+      this.picker.date = this.$dayjs(date).format('DD.MM.YYYY');
+      this.setEvents(
+        this.getEventsInitial.filter(item => (
+          item.date === this.picker.date
         ))
       );
     },
@@ -76,8 +83,15 @@ export default {
 
   .search {
     display: flex;
-    padding-right: 16px;
+    flex-direction: column;
     position: relative;
+    padding: 0 0 $container_padding 0;
+
+    @media (min-width: 769px) {
+      flex-direction: row;
+      padding: 0 $container_padding 0 0;
+    }
+
     .v-toolbar {
       background: $space-cadet;
       box-shadow: none;
@@ -87,6 +101,23 @@ export default {
       position: absolute;
       top: 110%;
       right: 16px;
+      z-index: 2;
+    }
+
+    .v-text-field {
+      @media (max-width: 768px) {
+        margin: 0 !important;
+      }
+    }
+
+    .v-date-field {
+      padding-left: $container_padding;
+      padding-right: $container_padding;
+
+      @media (min-width: 769px) {
+        padding-left: 0;
+        padding-right: 0;
+      }
     }
   }
 </style>

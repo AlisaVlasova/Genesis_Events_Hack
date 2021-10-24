@@ -26,15 +26,13 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
-
     '@nuxtjs/vuetify',
-
     '@nuxt/http',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
 
-  modules: ['@nuxtjs/axios', '@nuxtjs/auth-next', '@nuxt/http'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/auth-next', '@nuxt/http', '@nuxtjs/dayjs'],
   http: {
     // proxyHeaders: false
   },
@@ -48,5 +46,5 @@ export default {
   },
   vuetify: {
     optionsPath: "./vuetify.options.js",
-  }
+  },
 }

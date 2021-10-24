@@ -1,16 +1,23 @@
 <template>
   <div class="events">
-    <ul class="events__tags">
-      <li
-        v-for="tag of getTags"
-        :key="tag"
-        class="events__tag"
-        @click="filterTag(tag)"
-      >
-        tag
-      </li>
-    </ul>
-    <event-list :events="getEventsClone" />
+    <banner />
+
+    <h2 id="events" class="events__title secondary-title">
+      Найбліжчі події
+    </h2>
+    <div class="events__content">
+      <ul class="events__tags">
+        <li
+          v-for="tag of getTags"
+          :key="tag"
+          class="events__tag"
+          @click="filterTag(tag)"
+        >
+          tag
+        </li>
+      </ul>
+      <event-list :events="getEventsInitial" />
+    </div>
   </div>
 </template>
 
@@ -21,18 +28,18 @@ export default {
   computed: {
     ...mapGetters([
       'getEvents',
-      'getEventsClone',
+      'getEventsInitial',
       'getTags',
     ]),
   },
   methods: {
     ...mapMutations([
       'setEvents',
-      'setEventsClone',
+      'setEventsInitial',
     ]),
     filterTag(tag) {
-      this.setEventsClone(
-        this.getEvents.filter(item => (
+      this.setEvents(
+        this.getEventsInitial.filter(item => (
           item.tags.includes(tag)
         ))
       );
@@ -45,7 +52,7 @@ export default {
     ).then((res) => res.json())
 
     this.$store.dispatch('setEvents', Object.values(data))
-    this.$store.dispatch('setEventsClone', Object.values(data))
+    this.$store.dispatch('setEventsInitial', Object.values(data))
   },
 }
 </script>
@@ -54,9 +61,15 @@ export default {
   @import '@/assets/scss/_vars.scss';
 
   .events {
+    &__content {
+      padding-left: $container_padding;
+      padding-right: $container_padding;
+    }
+
     &__tags {
       display: flex;
       align-items: center;
+      margin-bottom: 32px;
     }
 
     &__tag {
@@ -68,6 +81,12 @@ export default {
       text-align: center;
       cursor: pointer;
     }
+    
+    &__title {
+      padding: $container_padding;
+      margin-top: 64px;
+    }
+
   }
 </style>
 

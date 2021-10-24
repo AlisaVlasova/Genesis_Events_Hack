@@ -6,19 +6,19 @@
       </button>
       <nuxt-link to="/" class="nav__logo nav__link">LOGO Company</nuxt-link>
       <ul :class="[{ 'nav__list-toggle': isToggleMobileNav }, 'nav__list']">
-        <li class="nav__item">
+        <li class="nav__item" @click.stop="toggleNav">
           <nuxt-link to="/" class="nav__link" :class="{ active: $nuxt.$route.path === '/' }">Events</nuxt-link>
         </li>
-        <li class="nav__item">
+        <li class="nav__item" @click.stop="toggleNav">
           <nuxt-link to="/event" class="nav__link" :class="{ active: $nuxt.$route.path === '/event' }">Favorite</nuxt-link>
         </li>
-        <li class="nav__item">
+        <li class="nav__item" @click.stop="toggleNav">
           <nuxt-link to="/profile" class="nav__link" :class="{ active: $nuxt.$route.path === '/profile' }">Profile</nuxt-link>
         </li>
-        <li class="nav__item">
+        <li class="nav__item" @click.stop="toggleNav">
           <nuxt-link to="/signin" class="nav__link" :class="{ active: $nuxt.$route.path === '/signin' }">Signin</nuxt-link>
         </li>
-        <li class="nav__item">
+        <li class="nav__item" @click.stop="toggleNav">
           <nuxt-link to="/signin" class="nav__link nav__link--button" :class="{ active: $nuxt.$route.path === '/signup' }">Signup</nuxt-link>
         </li>
       </ul>
@@ -56,10 +56,10 @@ export default {
 .nav {
   @media (min-width: 700px) {
     display: flex;
+    justify-content: space-between;
   }
 
   &__list {
-    margin: 0 auto;
     height: 100vh;
 
     &-toggle {

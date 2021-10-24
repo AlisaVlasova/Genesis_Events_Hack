@@ -34,6 +34,7 @@
       </div>
     </div>
     <div class="event__comments">
+      <AddComment />
       <LazyCommentsList v-if="commentsList.length > 0" :comments="commentsList" />
       <VNoItems v-else essence="comments" />
     </div>

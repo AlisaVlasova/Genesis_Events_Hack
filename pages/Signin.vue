@@ -52,3 +52,12 @@ export default {
   },
 }
 </script>
+
+<style scoped lang="scss">
+@import '@/assets/scss/_vars.scss';
+
+  input{
+    background-color:$text
+  }
+
+</style>

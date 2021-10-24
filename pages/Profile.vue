@@ -2,108 +2,154 @@
   <section class="profile">
     <aside class="profile__user">
       <div class="profile__adaptiv-img">
-        <img
-          class="profile__img"
-          :src="urlOfAvatar"
-          alt="photo"
-        />
+        <img class="profile__img" :src="imgSrc()" :alt="user.name" />
       </div>
 
       <div class="profile__block">
         <h3 class="profile__title">Profile Information</h3>
         <p class="profile__text">
-          <span class="profile__text_grey">Name: </span>Leonid Shvab
+          <span class="profile__text_grey">Name: </span>{{ user.name }}
         </p>
         <p class="profile__text">
           <span class="profile__text_grey">Location: </span>Kyiv
         </p>
         <p class="profile__text">
-          <span class="profile__text_grey">Age: </span>105
+          <span class="profile__text_grey">Age: </span>{{ user.age }}
         </p>
-        <!-- <label for="avatar">Choose a profile picture:</label>
-
+        <label for="avatar">Choose a profile picture:</label>
+        <v-file-input
+          :rules="rules"
+          accept="image/png, image/jpeg, image/bmp"
+          placeholder="Pick an avatar"
+          prepend-icon="mdi-camera"
+          v-model="avatar"
+          label="Avatar"
+        ></v-file-input>
+        <button @click="submitAvatar">Save</button>
+        <!--
+        // <input
+        //   type="file"
+        //   id="avatar"
+        //   name="avatar"
+        //   @change="inputAvatar"
+                <label class="profile__text" for="avatar"
+          >Choose an URL for a new avatar:</label
+        >
         <input
-          type="file"
-          id="avatar"
-          name="avatar"
-          @change="inputAvatar"
-        /> -->
-
-        <label class="profile__text" for="avatar">Choose an URL for a new avatar:</label>
-        <input
-        class="profile__input-img"
+          class="profile__input-img"
           type="text"
           id="avatar"
           name="avatar"
           @keyup.enter="test"
-        /> 
+        />
+        // /> -->
+
+
       </div>
     </aside>
 
     <div class="profile__actions">
       <!-- <Search /> -->
-      <EventList :events="getEvents" />
+      <!--  <EventList :events="getEvents" /> -->
       <UserList :users="getUsers" v-if="isAdmin" />
     </div>
   </section>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
 
 export default {
-    data() {
-        return {
-            urlOfAvatar: 'https://pokemonletsgo.pokemon.com/assets/img/common/char-pikachu.png'
-        }
-    },
-    computed: {
-    ...mapGetters([
-      'getEvents',
-      'getUsers'
-    ]),
-
-    isAdmin() {
-        return true
+  data() {
+    return {
+      avatar: '',
+      rules: [
+        (value) =>
+          !value ||
+          value.size < 2000000 ||
+          'Avatar size should be less than 2 MB!',
+      ],
+      user: {
+        userName: 'Leonid Shvab',
+        age: 10,
+        bio: 'some bio',
+        pic: 'https://pokemonletsgo.pokemon.com/assets/img/common/char-pikachu.png',
+        role: 'admin',
+      },
     }
+  },
+  async asyncData({ $http, params }) {
+    const user = await $http.$get(
+      `https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/users/eqreygqfuqeyg.json`
+    )
+    return { user }
+  },
+  computed: {
+    ...mapGetters(['getEvents', 'getEndpoint', 'getUsers']),
+  },
+
+  isAdmin() {
+    return this.user.role === 'admin'
   },
 
   created() {
-
+    console.log(12)
+    console.log(this.getUsers)
   },
   methods: {
-      test(e) {
-          this.urlOfAvatar = e.target.value;
-      }
-    //   inputAvatar(event) {
-    //       console.log(event.target.files[0]);
+    imgSrc() {
+      return `https://firebasestorage.googleapis.com/v0/b/kyiv-events-b93ca.appspot.com/o/${this.user.pic}?alt=media&token=3dea66fa-c8e5-439c-acaf-9f8fe47283a1`
+    },
+ 
+    async submitAvatar()  {
+      const formData = new FormData();
+      formData.append('file', this.avatar);
+      console.log('>> formData >> ', formData);
 
-    //       const formData = new FormData()
-
-    //   formData.append('action', 'createAppointments')
-    //   formData.append('locationId', this.currentId)
-    //   formData.append('file', this.file, this.name)
-    //   formData.append('run', true)
-
-    //   console.log(formData);
-    // //   api({
-    // //     method: 'post',
-    // //     url: '/upload',
-    // //     data: formData,
-    // //     headers: {
-    // //       Accept: 'application/json',
-    // //       'Content-Type': 'multipart/form-data',
-    // //     },
-    // //   }).then(() => {
-    // //     console.log('OK');
-    // //   }, (err) => console.log(err))
-
-
-    //   }
-  }
+      // You should have a server side REST API
+      await fetch('https://firebasestorage.googleapis.com/v0/b/kyiv-events-b93ca.appspot.com/api/upload',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            },
+        body: formData
+          },
+  
+        ).then(function () {
+          console.log('SUCCESS!!');
+        })
+        .catch(function () {
+          console.log('FAILURE!!');
+        });
+    },
+  },
 }
-</script>
+//   inputAvatar(event) {
+//       console.log(event.target.files[0]);
 
+//       const formData = new FormData()
+
+//   formData.append('action', 'createAppointments')
+//   formData.append('locationId', this.currentId)
+//   formData.append('file', this.file, this.name)
+//   formData.append('run', true)
+
+//   console.log(formData);
+// //   api({
+// //     method: 'post',
+// //     url: '/upload',
+// //     data: formData,
+// //     headers: {
+// //       Accept: 'application/json',
+// //       'Content-Type': 'multipart/form-data',
+// //     },
+// //   }).then(() => {
+// //     console.log('OK');
+// //   }, (err) => console.log(err))
+
+//   }
+</script>
 
 <style scoped lang="scss">
 @import '@/assets/scss/_vars.scss';
@@ -151,8 +197,8 @@ export default {
   }
 
   &__input-img {
-      background: $text;
-      color: $space-cadet;
+    background: $text;
+    color: $space-cadet;
   }
 }
 </style>

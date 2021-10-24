@@ -5,6 +5,7 @@ export const state = () => ({
 
   endpoint:
     'https://kyiv-events-b93ca-default-rtdb.europe-west1.firebasedatabase.app/',
+  
   // users list for admin only
   users: [
     {
@@ -58,7 +59,6 @@ export const getters = {
   getEndpoint(state) {
     return state.endpoint
   },
-
   getUsers(state) {
     return state.users
   }

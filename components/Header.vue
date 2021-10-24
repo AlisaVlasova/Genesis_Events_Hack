@@ -20,6 +20,7 @@
         </li>
       </ul>
     </nav>
+    <search />
   </header>
 </template>
 
@@ -42,15 +43,14 @@ export default {
 @import '@/assets/scss/_vars.scss';
 
 .header {
-    position: fixed;
-    // top: 0;
-    z-index: 1;
-    width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  width: 100%;
   background: #202c59ff;
 }
 
 .nav {
-
   @media (min-width: 700px) {
     display: flex;
   }
@@ -77,6 +77,12 @@ export default {
   &__logo {
     line-height: 48px;
     padding: 0 20px;
+    cursor: pointer;
+    transition: 0.4s;
+
+    &:hover > .nav__link {
+      color: $tangerine
+    }
   }
 
   &__item:not(:last-child) {
@@ -86,8 +92,12 @@ export default {
   }
 
   &__link {
-    font-weight: bold;
     color: $text;
+    transition: 0.4s;
+
+    &.active {
+      color: $tangerine
+    }
   }
 
   &__btnWrap {

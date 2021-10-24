@@ -1,7 +1,6 @@
 <template>
   <div class="default">
     <Header/>
-    <search />
     <div class="default__container">
       <Nuxt />
     </div>
@@ -18,7 +17,25 @@
     &__container {
       max-width: 1440px;
       margin: 0 auto;
-      padding: 16px;
+      padding-top: 112px;
+    }
+
+    .primary-title {
+      color: $tangerine;
+      font-size: 46px;
+
+      @media (min-width: 1025px) {
+        font-size: 80px;
+      }
+    }
+
+    .secondary-title {      
+      color: $tangerine;
+      font-size: 40px;
+
+      @media (min-width: 1025px) {
+        font-size: 50px;
+      }
     }
   }
 </style>

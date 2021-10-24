@@ -49,15 +49,21 @@
       </div>
     </aside>
 
-    <div class="profile__actions">
-      <!-- <Search /> -->
-      <!-- <ConnectedEventsList
-        v-if="isAdmin"
-        :connectedEvents="user.connectedEvents"
-      /> -->
-      <event-list :events="eventList" />
+    <div class="profile__actions" v-if="user.role === 'creator'">
+      <select v-model="choosenList" class="profile__select">
+      <option disabled value="">Choose list</option>
+      <option value="users">Users</option>
+      <option value="events">Events</option>
+    </select>
 
-      <UserList v-if="user.role === 'creator'" :users="getUsers" />
+      <!-- <Search /> -->
+      <ConnectedEventsList
+        v-if="user.role === 'creator' && choosenList === 'events'"
+        :connected-events="user.connectedEvents"
+      />
+      <event-list v-if="user.role !== 'creator'" :events="eventList" />
+
+      <UserList v-if="user.role === 'creator' && choosenList === 'users'" :users="getUsers" />
     </div>
   </section>
 </template>
@@ -69,6 +75,7 @@ export default {
   middleware:'authenticated',
   data() {
     return {
+      choosenList: 'events',
       avatar: '',
 
       user: {
@@ -246,6 +253,14 @@ margin-bottom: 40px;
     color: $text;
     border: 1px solid $text;
     padding: 3px 15px
+  }
+
+  &__select {
+    font-size: 1.5em;
+    color: #fff;
+    font-weight: bold;
+    border: 1px solid #fff;
+    padding: 5px;
   }
 }
 </style>

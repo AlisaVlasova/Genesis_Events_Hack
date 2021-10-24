@@ -102,14 +102,18 @@ export default {
   &__link {
     color: $text;
     transition: 0.4s;
+    
+    &.active {
+      color: $tangerine
+    }
 
     &--button {
       background: $tangerine;
-      padding: 8px
-    }
+      padding: 8px;
 
-    &.active {
-      color: $tangerine
+      &.active {
+        color: $text
+      }
     }
   }
 

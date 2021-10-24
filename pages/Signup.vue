@@ -29,7 +29,7 @@
       </div>
 
       <div class="form__link" style="margin-top: 20px">
-        Already got an account? <nuxt-link class="link" to="/login">Login</nuxt-link>
+        Already got an account? <nuxt-link class="link" to="/signin">Login</nuxt-link>
       </div>
     </form>
   </div>
@@ -52,7 +52,7 @@ export default {
     async register() {
       try {
         const response = await fetch(
-          'https://identitytoolkit.googleapis.com/v1/accounts:form?key=AIzaSyC_ryyBF1moAH7aDEl0E4bNzf8tvAMrJqQ',
+          'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyC_ryyBF1moAH7aDEl0E4bNzf8tvAMrJqQ',
           {
             method: 'POST', 
             headers: {
@@ -63,6 +63,7 @@ export default {
           }
         )
         console.log(response);
+        this.$router.push('/signin');
       } catch (err) {
         console.log(err)
       }

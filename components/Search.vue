@@ -17,7 +17,6 @@
         v-if="isActivePicker"
         no-title
         color="#343f68ff"
-        @change="(event) => filterDate(event)"
       ></v-date-picker>
       <!-- отменить инпут -->
       <v-text-field

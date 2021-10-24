@@ -385,3 +385,10 @@ ol {
 a {
   text-decoration: none;
 }
+
+img {
+  object-fit: cover;
+  -o-object-position: 50% 50%;
+  object-position: 50% 50%;
+  border-radius: 7px;
+}
